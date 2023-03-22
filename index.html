@@ -1,1 +1,84 @@
-1111
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1"
+    >
+    <title>My first three.js app</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background-color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <script src="./js/dist/tween.umd.js"></script>
+    <script type="module">
+        import * as THREE from './js/three.js';
+        const scene = new THREE.Scene();
+        scene.background = new THREE.Color(0x000000);
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.body.appendChild(renderer.domElement);
+
+
+        // 创建一个半径为 0.25 的圆形几何体
+        const geometry = new THREE.CircleGeometry(0.25, 32);
+        // 创建一个白色的基础材质
+        const material = new THREE.MeshBasicMaterial({ color: 0xffffff });
+        // 创建一个圆点网格对象，并将几何体和材质传入
+        const circle = new THREE.Mesh(geometry, material);
+
+        // 创建一个缩放动画
+
+        const tween = new TWEEN.Tween({ scale: 0.4 })
+            .to({ scale: 10 }, 2000)
+            .easing(TWEEN.Easing.Quadratic.InOut)
+            .onUpdate(() => {
+                console.log(2);
+                const color = new THREE.Color(1 - tween._object.scale / 20, 1 - tween._object.scale / 20, 1 - tween._object.scale / 20);
+                circle.material.color = color;
+                circle.scale.x = tween._object.scale;
+                circle.scale.y = tween._object.scale;
+            })
+            .repeat()
+            .yoyo(true)
+            .onComplete(() => {
+                console.log(1);
+                circle.material.color = new THREE.Color(0xff0000);
+            })
+            .start();
+
+        // 将圆点添加到场景中
+        scene.add(circle);
+
+        // 将相机向后移动 5 个单位
+        camera.position.z = 10;
+
+
+        // 定义一个动画函数
+        function animate() {
+            // 请求浏览器在下一帧调用 animate 函数
+            requestAnimationFrame(animate);
+            // 修改圆点的缩放比例，使其呼吸效果更明显
+            circle.scale.x = 0.4 + Math.sin(Date.now() * 0.0005) * 2;
+            circle.scale.y = 0.4 + Math.sin(Date.now() * 0.0005) * 2;
+            // 渲染场景和相机
+            renderer.render(scene, camera);
+        }
+        animate();
+
+
+
+    </script>
+</body>
+
+</html>
