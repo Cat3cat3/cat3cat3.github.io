@@ -1,84 +1,486 @@
 <!DOCTYPE html>
-
-<html>
+<html lang="zh">
 
 <head>
-    <meta charset="utf-8">
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1"
-    >
-    <title>My first three.js app</title>
-    <style>
-        body {
-            margin: 0;
-            overflow: hidden;
-            background-color: white;
-        }
-    </style>
+	<meta charset="utf-8">
+	<meta
+		name="viewport"
+		content="width=device-width, initial-scale=1"
+	>
+	<!-- 标签图标 -->
+	<link
+		rel="shortcut icon"
+		href="./cat3.svg"
+		type="image/x-icon"
+	>
+
+	<title>启</title>
+	<style>
+		body {
+			margin: 0;
+			overflow: hidden;
+			height: 100vh;
+			width: 100vw;
+			background-color: rgba(128, 128, 128, 1);
+			animation: body 9s ease-in-out infinite;
+		}
+
+
+		.circle {
+			position: absolute;
+			overflow: hidden;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			width: 50px;
+			height: 50px;
+			border-radius: 50%;
+			background-color: rgba(255, 255, 255, 1);
+			animation: breath 16s infinite;
+			z-index: 1;
+			cursor: pointer;
+		}
+
+		@keyframes body {
+			0% {
+				background-color: rgba(0, 0, 0, 1);
+			}
+
+			50% {
+				background-color: rgba(255, 255, 255, 1);
+			}
+
+			100% {
+				background-color: rgba(0, 0, 0, 1);
+			}
+		}
+
+		@keyframes breath {
+			0% {
+				transform: translate(-50%, -50%) scale(0);
+				background-color: rgba(0, 0, 0, 0);
+			}
+
+			25% {
+				transform: translate(-50%, -50%) scale(3);
+				background-color: rgba(0, 0, 0, 1);
+			}
+
+			50% {
+				transform: translate(-50%, -50%) scale(0);
+				background-color: rgba(0, 0, 0, 0);
+			}
+
+			50% {
+				transform: translate(-50%, -50%) scale(0);
+				background-color: rgba(255, 255, 255, 0);
+			}
+
+			75% {
+				transform: translate(-50%, -50%) scale(3);
+				background-color: rgba(255, 255, 255, 1);
+			}
+
+			100% {
+				transform: translate(-50%, -50%) scale(0);
+				background-color: rgba(255, 255, 255, 0);
+			}
+		}
+
+		@keyframes expand {
+			0% {
+				transform: translate(-50%, -50%) scale(1);
+			}
+
+			100% {
+				transform: translate(-50%, -50%) scale(20);
+			}
+		}
+
+		.stopped {
+			animation-play-state: paused;
+		}
+	</style>
 </head>
 
 <body>
-    <script src="./js/dist/tween.umd.js"></script>
-    <script type="module">
-        import * as THREE from './js/three.js';
-        const scene = new THREE.Scene();
-        scene.background = new THREE.Color(0x000000);
-        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-        const renderer = new THREE.WebGLRenderer();
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        document.body.appendChild(renderer.domElement);
+	<div
+		class="circle"
+		onclick="stopBreath(this);"
+	></div>
+	<div id="hello"></div>
+	<div id="typewriter">Hello World</div>
 
 
-        // 创建一个半径为 0.25 的圆形几何体
-        const geometry = new THREE.CircleGeometry(0.25, 32);
-        // 创建一个白色的基础材质
-        const material = new THREE.MeshBasicMaterial({ color: 0xffffff });
-        // 创建一个圆点网格对象，并将几何体和材质传入
-        const circle = new THREE.Mesh(geometry, material);
+	<script src="./js/text.js"></script>
+	<script>
 
-        // 创建一个缩放动画
+		//hello world
+		let hello = document.getElementById('hello');
+		// 打字动效
+		let typewriterDom = document.getElementById('typewriter');
 
-        const tween = new TWEEN.Tween({ scale: 0.4 })
-            .to({ scale: 10 }, 2000)
-            .easing(TWEEN.Easing.Quadratic.InOut)
-            .onUpdate(() => {
-                console.log(2);
-                const color = new THREE.Color(1 - tween._object.scale / 20, 1 - tween._object.scale / 20, 1 - tween._object.scale / 20);
-                circle.material.color = color;
-                circle.scale.x = tween._object.scale;
-                circle.scale.y = tween._object.scale;
-            })
-            .repeat()
-            .yoyo(true)
-            .onComplete(() => {
-                console.log(1);
-                circle.material.color = new THREE.Color(0xff0000);
-            })
-            .start();
-
-        // 将圆点添加到场景中
-        scene.add(circle);
-
-        // 将相机向后移动 5 个单位
-        camera.position.z = 10;
-
-
-        // 定义一个动画函数
-        function animate() {
-            // 请求浏览器在下一帧调用 animate 函数
-            requestAnimationFrame(animate);
-            // 修改圆点的缩放比例，使其呼吸效果更明显
-            circle.scale.x = 0.4 + Math.sin(Date.now() * 0.0005) * 2;
-            circle.scale.y = 0.4 + Math.sin(Date.now() * 0.0005) * 2;
-            // 渲染场景和相机
-            renderer.render(scene, camera);
-        }
-        animate();
+		// 停止动画开关
+		let isStopBreath = false;
 
 
 
-    </script>
+		// 自定义创建文本节点的函数
+		const customNodeCreator = function (character) {
+			return document.createTextNode(character);
+		}
+
+		// 创建Typewriter实例
+		let typewriter = new Typewriter(typewriterDom, {
+			delay: 0,
+			deleteSpeed: 0,
+			onCreateTextNode: customNodeCreator,
+		});
+
+
+		//typewriter动画
+		const typewriterAnimation = (backgroundColor) => {
+			typewriter
+				// .callFunction隐藏元素
+				.callFunction(() => {
+					typewriterDom.style.display = 'none';
+				})
+				.typeString('Hello World')
+				.pauseFor(407)
+				// 显示元素
+				.callFunction(() => {
+					//left: 51%;
+					typewriterDom.style.left = '50%';
+					typewriterDom.style.display = 'block';
+					typewriterDom.position = 'absolute';
+					// 文字左对齐
+					typewriterDom.style.textAlign = 'left';
+				})
+				// .pauseFor(907)
+				// .deleteChars(1)
+				// .pauseFor(507)
+				// .deleteChars(1)
+				// .pauseFor(52)
+				// .deleteChars(1)
+				// .pauseFor(51)
+				// .deleteChars(1)
+				// .pauseFor(52)
+				// .deleteChars(1)
+				// .pauseFor(51)
+				// .deleteChars(1)
+				// .pauseFor(58)
+				// .deleteChars(1)
+				// .pauseFor(31)
+				// .deleteChars(1)
+				// .pauseFor(30)
+				// .deleteChars(1)
+				// .pauseFor(31)
+				// .deleteChars(1)
+				// .pauseFor(30)
+				// .deleteChars(1)
+				// .pauseFor(900)
+				// //Welcome
+				// .typeString("w")
+				// .pauseFor(392)
+				// .deleteChars(1)
+				// .pauseFor(424)
+				// .typeString("W")
+				// .pauseFor(241)
+				// .typeString("e")
+				// .pauseFor(174)
+				// .typeString("l")
+				// .pauseFor(222)
+				// .typeString("o")
+				// .pauseFor(234)
+				// .typeString("c")
+				// .pauseFor(480)
+				// .deleteChars(1)
+				// .pauseFor(152)
+				// .deleteChars(1)
+				// .pauseFor(296)
+				// .typeString("c")
+				// .pauseFor(144)
+				// .typeString("o")
+				// .pauseFor(124)
+				// .typeString("m")
+				// .pauseFor(96)
+				// .typeString("e")
+				// .pauseFor(596)
+				// .typeString("<br />")
+				// .pauseFor(2096)
+				// //开源布道
+				// .typeString("<i>w</i>")
+				// .pauseFor(126)
+				// .typeString("<i>o</i>")
+				// .pauseFor(361)
+				// .deleteChars(2)
+				// .typeString("我")
+				// .pauseFor(1007)
+				// .deleteChars(1)
+				// .pauseFor(1410)
+				// .typeString("<mark>c</mark>")
+				// .pauseFor(118)
+				// .typeString("<mark>a</mark>")
+				// .pauseFor(118)
+				// .typeString("<mark>t</mark>")
+				// .pauseFor(1017)
+				// .typeString("<i>s</i>")
+				// .pauseFor(168)
+				// .typeString("<i>a</i>")
+				// .pauseFor(231)
+				// .typeString("<i>n</i>")
+				// .pauseFor(704)
+				// .deleteChars(3)
+				// .typeString("<mark>彡</mark> ")
+				// .pauseFor(2832)
+				// .typeString("<br />")
+				// .typeString("<i>u</i>")
+				// .pauseFor(221)
+				// .typeString("<i>i</i>")
+				// .pauseFor(386)
+				// .deleteChars(1)
+				// .pauseFor(144)
+				// .deleteChars(1)
+				// .pauseFor(546)
+				// .typeString("<i>y</i>")
+				// .pauseFor(192)
+				// .typeString("<i>i</i>")
+				// .pauseFor(231)
+				// .typeString("<i>h</i>")
+				// .pauseFor(248)
+				// .typeString("<i>o</i>")
+				// .pauseFor(208)
+				// .typeString("<i>u</i>")
+				// .pauseFor(536)
+				// .deleteChars(5)
+				// .typeString("以后")
+				// .pauseFor(136)
+				// .typeString("<i>z</i>")
+				// .pauseFor(174)
+				// .typeString("<i>u</i>")
+				// .pauseFor(192)
+				// .typeString("<i>n</i>")
+				// .pauseFor(105)
+				// .typeString("<i>b</i>")
+				// .pauseFor(168)
+				// .typeString("<i>z</i>")
+				// .typeString("<i>a</i>")
+				// .pauseFor(80)
+				// .typeString("<i>i</i>")
+				// .pauseFor(292)
+				// .typeString("<i>z</i>")
+				// .pauseFor(144)
+				// .typeString("<i>l</i>")
+				// .pauseFor(192)
+				// .deleteChars(9)
+				// .typeString("<br />")
+				// .typeString("准备在<strong style='font-size: 2.6rem;'>这里</strong>")
+				// .pauseFor(2392)
+				// .deleteChars(25)
+				// .pauseFor(100)
+				.typeString(`<strong id='openSource' style='font-size: 2.4rem;'>开源</strong>`)
+				.pauseFor(2000)
+				.typeString(`<strong style='background-color: ${backgroundColor};font-style: italic'>⚪</strong>`)
+				.pauseFor(2000)
+				.typeString(`<strong id='preach' style='font-size: 2.4rem;'>布道</strong>`)
+				.pauseFor(1000)
+				.callFunction((event) => {
+
+					// 移除光标
+					document.querySelector('.Typewriter__cursor').remove();
+					let openSource = document.querySelector('#openSource');
+
+					// 创建气泡
+					let bubble = document.createElement('div');
+					document.body.appendChild(bubble);
+					bubble.textContent = '将现有的资源整理对公众开放允许任何人查看、复制、分发、修改或使用。';
+					bubble.style.color = this.bodyBackgroundColor;
+					bubble.style.fontSize = '1.2rem';
+					bubble.style.position = 'fixed';
+
+					// 鼠标移入
+					console.log(bubble, 'bubble', event);
+					openSource.addEventListener('mousemove', function (event) {
+						console.log(event, event.clientX, event.clientY, 'event');
+						bubble.style.top = `${event.clientY + 30}px`;
+						bubble.style.left = `${event.clientX}px`;
+						bubble.style.display = 'block';
+						openSource.addEventListener('mouseout', function () {
+							bubble.style.display = 'none';
+						});
+					});
+					openSource.addEventListener('touchstart', function (event) {
+						let bubble = document.createElement('div');
+						bubble.textContent = '将现有的资源整理对公众开放允许任何人查看、复制、分发、修改或使用。';
+						bubble.style.color = backgroundColor;
+						bubble.style.position = 'fixed';
+						bubble.style.top = `${event.touches[0].clientY}px`;
+						bubble.style.left = `${event.touches[0].clientX}px`;
+						document.body.appendChild(bubble);
+						openSource.addEventListener('touchend', function () {
+							bubble.remove();
+						});
+					});
+				})
+				.start();
+
+		}
+
+
+
+
+		// 点击circle停止动画
+		function stopBreath(element) {
+			if (isStopBreath) return;
+			isStopBreath = true;
+
+			//circle的动画停止
+			element.classList.add('stopped');
+
+			//body的动画停止
+			document.body.classList.add('stopped');
+
+			//获取当前circle大小与颜色，之后circle开始放到直到占满屏幕
+			let circle = document.querySelector('.circle');
+
+			// 拷贝另一个圆添加到body中
+			let newCircle = circle.cloneNode(true);
+			document.body.appendChild(newCircle);
+
+			// newCircle的颜色与大小与circle当前一致
+			let color = window.getComputedStyle(circle).getPropertyValue('background-color');
+			let bodyBackgroundColor = window.getComputedStyle(document.body).getPropertyValue('background-color');
+
+			newCircle.style.backgroundColor = color;
+			// newCircle的大小与circle当前一致
+			let rect = circle.getBoundingClientRect();
+			newCircle.style.width = rect.width + 'px';
+			newCircle.style.height = rect.height + 'px';
+
+			// 隐藏circle
+			circle.style.display = 'none';
+
+			// circle开始执行新动画不断扩大占满屏幕
+			newCircle.style.animation = 'expand 5s ease forwards';
+			// position:fixed
+			newCircle.style.position = 'fixed';
+
+			// 替换节点
+			circle.parentNode.replaceChild(newCircle, circle);
+
+			// newCircle超出部分自动隐藏
+			newCircle.style.overflow = 'hidden';
+
+			// 等3秒
+			setTimeout(function () {
+				// 屏幕中央 渐入 hello world 从模糊到清晰
+				helloWorld(newCircle.style.backgroundColor, bodyBackgroundColor);
+			}, 1000);
+
+		}
+
+
+		// 屏幕中央 渐入 hello world 从模糊到清晰
+		function helloWorld(newCircleBackgroundColor, bodyBackgroundColor) {
+			// //根据传入的颜色进一步操作
+			const rgbaValues = newCircleBackgroundColor.substring(newCircleBackgroundColor.indexOf('(') + 1, newCircleBackgroundColor.lastIndexOf(')')).split(/,\s*/);
+			const alpha = parseFloat(rgbaValues[3]);
+			const colorR = parseFloat(rgbaValues[0]);
+
+			// 判断text是黑色还是白色
+			const textShadowColor = colorR === 0 ? 255 : 0;
+
+
+			hello.innerHTML = "Hello World";
+			hello.style.animation = "fadeIn 8s ease forwards";
+
+			// 创建style标签
+			const keyframes = `@keyframes fadeIn {
+									0% {
+										opacity: 0.5;
+										font-size: 0em;
+										text-shadow: 0 0 300px rgba(${textShadowColor}, ${textShadowColor}, ${textShadowColor}, 0.5);
+									}
+
+									30% {
+										opacity: 1;
+										font-size: 1em;
+										text-shadow: 0 0 20px rgba(${textShadowColor}, ${textShadowColor}, ${textShadowColor},1);
+									}
+									60% {
+										opacity: 0.5;
+										font-size: 1.5em;
+										text-shadow: 0 0 100px rgba(${textShadowColor}, ${textShadowColor}, ${textShadowColor}, 0.5);
+									}
+									100% {
+										opacity: 1;
+										font-size: 2em;
+										text-shadow: 0 0 0px rgba(${textShadowColor}, ${textShadowColor}, ${textShadowColor}, 1);
+									}
+								}`;
+
+			const styleSheet = document.createElement("style");
+			styleSheet.innerHTML = keyframes;
+			document.head.appendChild(styleSheet);
+
+
+			// 等待9秒后
+			setTimeout(function () {
+				console.log("hello world");
+
+
+
+				// 显示typewriter
+				// typewriter的颜色为textShadowColor
+				typewriterDom.style.color = `rgb(${textShadowColor}, ${textShadowColor}, ${textShadowColor})`;
+				typewriterDom.style.display = 'block';
+
+				// 等待1s隐藏hello world
+				setTimeout(function () {
+					hello.style.display = 'none';
+				}, 500);
+
+				// typewriter动画start
+				typewriterAnimation(bodyBackgroundColor);
+
+
+			}, 9000);
+
+		}
+
+
+
+
+
+	</script>
+
+
+	<style>
+		#hello {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			font-size: 2em;
+			font-family: Arial, sans-serif;
+			color: transparent;
+			text-shadow: 0 0 50px rgba(255, 255, 255, 0.5);
+			opacity: 1;
+			z-index: 10;
+		}
+
+		#typewriter {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			font-size: 2em;
+			font-family: Arial, sans-serif;
+			color: transparent;
+			opacity: 1;
+			z-index: 10;
+		}
+	</style>
 </body>
 
 </html>
