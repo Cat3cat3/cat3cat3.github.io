@@ -301,7 +301,7 @@
 					// 鼠标移入
 					console.log(bubble, 'bubble', event);
 					openSource.addEventListener('mousemove', function (event) {
-						console.log(event, event.clientX, event.clientY, 'event');
+						console.log(event, event.clientX, event.clientY, 'event',this.bodyBackgroundColor);
 						bubble.style.top = `${event.clientY + 30}px`;
 						bubble.style.left = `${event.clientX}px`;
 						bubble.style.display = 'block';
