@@ -41,6 +41,57 @@
 			cursor: pointer;
 		}
 
+		#domBubbleControl {
+			height: 2rem;
+			width: 2rem;
+			cursor: move;
+			display: none;
+			z-index: 1000;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			transition: all 0.01s ease;
+		}
+
+		#title {
+			position: absolute;
+			top: 70%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			font-size: 2rem;
+			color: rgba(255, 255, 255, 1);
+			z-index: 1000;
+			transition: all 0.01s ease;
+			display: none;
+		}
+
+		.control {
+			position: absolute;
+			font-size: 2rem;
+			/* 字体水平垂直居中 */
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			height: 100%;
+			width: 100%;
+
+		}
+
+		.blinking {
+			animation: blinker 8s linear infinite;
+		}
+
+		@keyframes blinker {
+			40% {
+				opacity: 0;
+			}
+
+			60% {
+				opacity: 0;
+			}
+		}
+
 		@keyframes body {
 			0% {
 				background-color: rgba(0, 0, 0, 1);
@@ -97,6 +148,18 @@
 			}
 		}
 
+		@keyframes domBubbleControlExpand {
+			0% {
+				transform: translate(-50%, -50%) scale(0);
+			}
+
+			100% {
+				transform: translate(-50%, -50%) scale(1);
+			}
+		}
+
+
+
 		.stopped {
 			animation-play-state: paused;
 		}
@@ -110,7 +173,15 @@
 	></div>
 	<div id="hello"></div>
 	<div id="typewriter">Hello World</div>
-
+	<div id="domBubbleControl">
+		<strong
+			id="control"
+			class="control"
+		>
+			⚪
+		</strong>
+	</div>
+	<div id="title">这里</div>
 
 	<script src="./js/text.js"></script>
 	<script>
@@ -137,11 +208,10 @@
 			onCreateTextNode: customNodeCreator,
 		});
 
-
 		//typewriter动画
 		const typewriterAnimation = (bodyBackgroundColor, textShadowColor) => {
 			typewriter
-				// .callFunction隐藏元素
+				// // .callFunction隐藏元素
 				// .callFunction(() => {
 				// 	typewriterDom.style.display = 'none';
 				// })
@@ -278,11 +348,11 @@
 				// .pauseFor(2392)
 				// .deleteChars(25)
 				// .pauseFor(100)
-				.typeString(`<strong id='openSource' style='font-size: 2.4rem;'>开源</strong>`)
+				.typeString(`<strong id='openSource' class='domBubble' style='background-color: ${bodyBackgroundColor};font-size: 2.4rem;'>开源</strong>`)
 				.pauseFor(2000)
-				.typeString(`<strong id='domBubbleControl' style='background-color: ${bodyBackgroundColor};font-style: italic'>⚪</strong>`)
+				.typeString(`<strong style='opacity: 0; font-style: italic'>⚪</strong>`)
 				.pauseFor(2000)
-				.typeString(`<strong id='preach' style='font-size: 2.4rem;'>布道</strong>`)
+				.typeString(`<strong id='preach' class='domBubble' style='background-color: ${bodyBackgroundColor};font-size: 2.4rem;'>布道</strong>`)
 				.pauseFor(1000)
 				.callFunction(() => {
 
@@ -295,57 +365,126 @@
 					//布道
 					domBubble('#preach', bodyBackgroundColor, `rgb(${textShadowColor}, ${textShadowColor}, ${textShadowColor})`, '将现有的思考整理对公众开放欢迎任何人讨论、反馈、审查、编辑或传播。');
 
-					// 给#domBubbleControl创建监听事件，可通过鼠标向上或向下拖动，向上拖动时bodyBackgroundColor颜色向白色接近，向下相反，松开domBubbleControl自动掉跳转到之前的位置
-					const domBubbleControl = document.querySelector('#domBubbleControl');
-					const body = document.querySelector('body');
-					let currentY;
+					//背景颜色控制器				
+					const domBubbleControl = document.getElementById('domBubbleControl');
+					// 获取class为domBubble的元素
+					domBubbleControl.style.display = 'block';
+					domBubbleControl.style.opacity = 0;
+					domBubbleControl.style.userSelect = 'none';
 
-					domBubbleControl.addEventListener('mousedown', (event) => {
-						currentY = event.clientY;
-						console.log(currentY);
-					});
 
-					domBubbleControl.addEventListener('mouseup', () => {
-						currentY = null;
-					});
 
-					domBubbleControl.addEventListener('mousemove', (event) => {
-						if (currentY) {
-							const diff = currentY - event.clientY;
-							const bodyBackground = body.style.backgroundColor;
-							const currentColor = bodyBackground ? parseInt(bodyBackground.split(',')[0].split('(')[1]) : 255;
-							const newColor = Math.min(255, Math.max(0, currentColor + diff));
-							body.style.backgroundColor = `rgb(${newColor}, ${newColor}, ${newColor})`;
+					setTimeout(function () {
+						domBubbleControl.style.opacity = 1;
+						domBubbleControl.style.animation = 'domBubbleControlExpand 1s ease forwards';
+					}, 100);
+
+					// 让domBubbleControl不能被文本选中
+
+
+
+					let startX = parseInt(window.getComputedStyle(domBubbleControl).left);
+					let startY = parseInt(window.getComputedStyle(domBubbleControl).top);
+
+					let mouseX = 0;
+					let mouseY = 0;
+
+					const mousemoveHandler = (e) => {
+						const deltaX = e.clientX - mouseX;
+						const deltaY = e.clientY - mouseY;
+						domBubbleControl.style.top = (startY + deltaY) + 'px';
+
+
+						//改变domBubble颜色
+						var bodyBackgroundColor = `rgb(${deltaY / 2 + 125}, ${deltaY / 2 + 125}, ${deltaY / 2 + 125})`
+						console.log(bodyBackgroundColor);
+						const domBubble = document.getElementsByClassName('domBubble')
+						for (let i = 0; i < domBubble.length; i++) {
+							domBubble[i].style.backgroundColor = bodyBackgroundColor;
 						}
-					});
 
-					domBubbleControl.addEventListener('mouseleave', () => {
-						currentY = null;
-						body.style.backgroundColor = null;
-					});
+					};
 
-					domBubbleControl.addEventListener('click', (event) => {
-						event.preventDefault();
-						if (currentY) {
-							const newPosition = document.elementFromPoint(event.clientX, event.clientY);
-							window.scrollTo({ top: newPosition.offsetTop, behavior: 'smooth' });
+					const mousedownHandler = (e) => {
+						mouseX = e.clientX;
+						mouseY = e.clientY;
+
+						document.addEventListener('mousemove', mousemoveHandler);
+						document.addEventListener('mouseup', () => {
+							document.removeEventListener('mousemove', mousemoveHandler);
+							domBubbleControl.style.top = startY + 'px';
+							domBubbleControl.style.left = startX + 'px';
+						}, { once: true });
+					};
+
+					const touchmoveHandler = (e) => {
+						const deltaX = e.touches[0].clientX - touchX;
+						const deltaY = e.touches[0].clientY - touchY;
+						domBubbleControl.style.top = (startY + deltaY) + 'px';
+
+
+						//改变domBubble颜色
+						var bodyBackgroundColor = `rgb(${deltaY / 2 + 125}, ${deltaY / 2 + 125}, ${deltaY / 2 + 125})`
+						console.log(bodyBackgroundColor);
+						const domBubble = document.getElementsByClassName('domBubble')
+						for (let i = 0; i < domBubble.length; i++) {
+							domBubble[i].style.backgroundColor = bodyBackgroundColor;
 						}
-					});
+
+					};
+
+					const touchstartHandler = (e) => {
+						touchX = e.touches[0].clientX;
+						touchY = e.touches[0].clientY;
+
+						document.addEventListener('touchmove', touchmoveHandler);
+						document.addEventListener('touchend', () => {
+							document.removeEventListener('touchmove', touchmoveHandler);
+							domBubbleControl.style.top = startY + 'px';
+							domBubbleControl.style.left = startX + 'px';
+						}, { once: true });
+					};
+
+					domBubbleControl.addEventListener('mousedown', mousedownHandler);
+					domBubbleControl.addEventListener('touchstart', touchstartHandler);
+
+
+
+					// 延迟5秒后出现的文字 ‘进入’下一行‘退出’，点击后开始闪烁
+					setTimeout(function () {
+
+						const title = document.getElementById('title');
+
+						title.style.color = `rgb(${textShadowColor}, ${textShadowColor}, ${textShadowColor})`;
+						title.style.display = 'block';
+						title.classList.add("blinking");
+
+
+						// 点击进入
+						title.addEventListener('click', function () {
+							// 点击后向上移动
+							const typewriter = document.getElementById('typewriter');
+							const domBubbleControl = document.getElementById('domBubbleControl');
+
+							title.style.animation = 'titleMoveUp 1s ease forwards';
+							typewriter.style.animation = 'domBubbleMoveUp 1s ease forwards';
+							domBubbleControl.style.animation = 'domBubbleMoveUp 1s ease forwards';
+
+						});
+					}, 5000);
 
 				})
 				.start();
 
 		}
 
-
-
 		// 注释方法
 		/**
 		 * Sets the background color and text content of the given element, and shows it on mouseup event
 		 *
 		 * @param {HTMLElement} element - The element to set the background color and text content
-		 * @param {string} backgroundColor - The desired background color
 		 * @param {string} textContent - The desired text content
+		 * @param {string} backgroundColor - The desired background color
 		 * 
 		// Example usage
 		const bubble = document.createElement('div');
@@ -369,6 +508,7 @@
 			bubble.style.borderRadius = '0.5rem';
 			bubble.textContent = textContent;
 			bubble.style.display = 'none';
+			bubble.classList.add('domBubble');
 
 			// 鼠标移入
 			dom.addEventListener('mouseup', function (event) {
@@ -381,6 +521,7 @@
 				});
 			});
 		}
+
 
 
 
@@ -536,6 +677,18 @@
 			color: transparent;
 			opacity: 1;
 			z-index: 10;
+		}
+
+		@keyframes titleMoveUp {
+			100% {
+				top: 8%;
+			}
+		}
+
+		@keyframes domBubbleMoveUp {
+			100% {
+				top: 3%;
+			}
 		}
 	</style>
 </body>
