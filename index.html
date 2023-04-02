@@ -181,7 +181,126 @@
 			⚪
 		</strong>
 	</div>
-	<div id="title">这里</div>
+	<header id="title">这里</header>
+
+	<main
+		id="openSourceHTML"
+		style="display: none;"
+	>
+		<p>时间：2023-04-3</p>
+		<p><input type="checkbox">1、注册一个<span
+				class='domBubble'
+				id="GitHub"
+			>GitHub</span>账户。</p>
+		<p><input type="checkbox">2、创建一个名为“{username}.github.io”的<span
+				class='domBubble'
+				id="repository"
+			>repository</span>，其中“{username}”是您的GitHub用户名。</p>
+		<p><input type="checkbox">3、在存储库中创建一个<span
+				class='domBubble'
+				id="index"
+			>index</span>.<span
+				class='domBubble'
+				id="html"
+			>html</span>文件，并添加您的网站内容。</p>
+		<p><input type="checkbox">4、将更改提交并推送到存储库。</p>
+		<p>如下：</p>
+		<img
+			style="max-width: 100%;"
+			src="./images/GitHubSignUp/1.png"
+			alt="GitHub logo"
+		>
+		<img
+			style="max-width: 100%;"
+			src="./images/GitHubSignUp/2.png"
+			alt="GitHub new repository"
+		>
+		<img
+			style="max-width: 100%;"
+			src="./images/GitHubSignUp/3.png"
+			alt="GitHub repository settings"
+		>
+		<img
+			style="max-width: 100%;"
+			src="./images/GitHubSignUp/4.png"
+			alt="GitHub create new file"
+		>
+		<img
+			style="max-width: 100%;"
+			src="./images/GitHubSignUp/5.png"
+			alt="GitHub commit changes"
+		>
+		<img
+			style="max-width: 100%;"
+			src="./images/GitHubSignUp/6.png"
+			alt="GitHub website deployed"
+		>
+		<p>恭喜，在Web浏览器中访问“{username}.github.io”就可以查看你部署的网站了。</p>
+		<p>不过，比起这更重要的是你想表达什么，have fun!</p>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<div
+			id="easterEgg"
+			style="width: 100vw; height: 1rem; text-align: center;
+		"
+		>😏</div>
+		<div style="width: 100vw; height: 1rem; opacity: 0.8;"></div>
+		<div style="width: 100vw; height: 1rem; opacity: 0.6;"></div>
+		<div style="width: 100vw; height: 1rem; opacity: 0.4;"></div>
+		<div style="width: 100vw; height: 1rem; opacity: 0.2;"></div>
+
+	</main>
+	<main
+		id="preachHTML"
+		style="display: none;"
+	>
+
+	</main>
 
 	<script src="./js/text.js"></script>
 	<script>
@@ -209,150 +328,150 @@
 		});
 
 		//typewriter动画
-		const typewriterAnimation = (bodyBackgroundColor, textShadowColor) => {
+		const typewriterAnimation = (bodyBackgroundColor, textShadowColor, newCircleBackgroundColor) => {
 			typewriter
-				// // .callFunction隐藏元素
-				// .callFunction(() => {
-				// 	typewriterDom.style.display = 'none';
-				// })
-				// .typeString('Hello World')
-				// .pauseFor(407)
-				// // 显示元素
-				// .callFunction(() => {
-				// 	//left: 51%;
-				// 	typewriterDom.style.left = '50%';
-				// 	typewriterDom.style.display = 'block';
-				// 	typewriterDom.position = 'absolute';
-				// 	// 文字左对齐
-				// 	typewriterDom.style.textAlign = 'left';
-				// })
-				// .pauseFor(907)
-				// .deleteChars(1)
-				// .pauseFor(507)
-				// .deleteChars(1)
-				// .pauseFor(52)
-				// .deleteChars(1)
-				// .pauseFor(51)
-				// .deleteChars(1)
-				// .pauseFor(52)
-				// .deleteChars(1)
-				// .pauseFor(51)
-				// .deleteChars(1)
-				// .pauseFor(58)
-				// .deleteChars(1)
-				// .pauseFor(31)
-				// .deleteChars(1)
-				// .pauseFor(30)
-				// .deleteChars(1)
-				// .pauseFor(31)
-				// .deleteChars(1)
-				// .pauseFor(30)
-				// .deleteChars(1)
-				// .pauseFor(900)
-				// //Welcome
-				// .typeString("w")
-				// .pauseFor(392)
-				// .deleteChars(1)
-				// .pauseFor(424)
-				// .typeString("W")
-				// .pauseFor(241)
-				// .typeString("e")
-				// .pauseFor(174)
-				// .typeString("l")
-				// .pauseFor(222)
-				// .typeString("o")
-				// .pauseFor(234)
-				// .typeString("c")
-				// .pauseFor(480)
-				// .deleteChars(1)
-				// .pauseFor(152)
-				// .deleteChars(1)
-				// .pauseFor(296)
-				// .typeString("c")
-				// .pauseFor(144)
-				// .typeString("o")
-				// .pauseFor(124)
-				// .typeString("m")
-				// .pauseFor(96)
-				// .typeString("e")
-				// .pauseFor(596)
-				// .typeString("<br />")
-				// .pauseFor(2096)
-				// //开源布道
-				// .typeString("<i>w</i>")
-				// .pauseFor(126)
-				// .typeString("<i>o</i>")
-				// .pauseFor(361)
-				// .deleteChars(2)
-				// .typeString("我")
-				// .pauseFor(1007)
-				// .deleteChars(1)
-				// .pauseFor(1410)
-				// .typeString("<mark>c</mark>")
-				// .pauseFor(118)
-				// .typeString("<mark>a</mark>")
-				// .pauseFor(118)
-				// .typeString("<mark>t</mark>")
-				// .pauseFor(1017)
-				// .typeString("<i>s</i>")
-				// .pauseFor(168)
-				// .typeString("<i>a</i>")
-				// .pauseFor(231)
-				// .typeString("<i>n</i>")
-				// .pauseFor(704)
-				// .deleteChars(3)
-				// .typeString("<mark>彡</mark> ")
-				// .pauseFor(2832)
-				// .typeString("<br />")
-				// .typeString("<i>u</i>")
-				// .pauseFor(221)
-				// .typeString("<i>i</i>")
-				// .pauseFor(386)
-				// .deleteChars(1)
-				// .pauseFor(144)
-				// .deleteChars(1)
-				// .pauseFor(546)
-				// .typeString("<i>y</i>")
-				// .pauseFor(192)
-				// .typeString("<i>i</i>")
-				// .pauseFor(231)
-				// .typeString("<i>h</i>")
-				// .pauseFor(248)
-				// .typeString("<i>o</i>")
-				// .pauseFor(208)
-				// .typeString("<i>u</i>")
-				// .pauseFor(536)
-				// .deleteChars(5)
-				// .typeString("以后")
-				// .pauseFor(136)
-				// .typeString("<i>z</i>")
-				// .pauseFor(174)
-				// .typeString("<i>u</i>")
-				// .pauseFor(192)
-				// .typeString("<i>n</i>")
-				// .pauseFor(105)
-				// .typeString("<i>b</i>")
-				// .pauseFor(168)
-				// .typeString("<i>z</i>")
-				// .typeString("<i>a</i>")
-				// .pauseFor(80)
-				// .typeString("<i>i</i>")
-				// .pauseFor(292)
-				// .typeString("<i>z</i>")
-				// .pauseFor(144)
-				// .typeString("<i>l</i>")
-				// .pauseFor(192)
-				// .deleteChars(9)
-				// .typeString("<br />")
-				// .typeString("准备在<strong style='font-size: 2.6rem;'>这里</strong>")
-				// .pauseFor(2392)
-				// .deleteChars(25)
-				// .pauseFor(100)
-				.typeString(`<strong id='openSource' class='domBubble' style='background-color: ${bodyBackgroundColor};font-size: 2.4rem;'>开源</strong>`)
+				// .callFunction隐藏元素
+				.callFunction(() => {
+					typewriterDom.style.display = 'none';
+				})
+				.typeString('Hello World')
+				.pauseFor(407)
+				// 显示元素
+				.callFunction(() => {
+					//left: 51%;
+					typewriterDom.style.left = '50%';
+					typewriterDom.style.display = 'block';
+					typewriterDom.position = 'absolute';
+					// 文字左对齐
+					typewriterDom.style.textAlign = 'left';
+				})
+				.pauseFor(907)
+				.deleteChars(1)
+				.pauseFor(507)
+				.deleteChars(1)
+				.pauseFor(52)
+				.deleteChars(1)
+				.pauseFor(51)
+				.deleteChars(1)
+				.pauseFor(52)
+				.deleteChars(1)
+				.pauseFor(51)
+				.deleteChars(1)
+				.pauseFor(58)
+				.deleteChars(1)
+				.pauseFor(31)
+				.deleteChars(1)
+				.pauseFor(30)
+				.deleteChars(1)
+				.pauseFor(31)
+				.deleteChars(1)
+				.pauseFor(30)
+				.deleteChars(1)
+				.pauseFor(900)
+				//Welcome
+				.typeString("w")
+				.pauseFor(392)
+				.deleteChars(1)
+				.pauseFor(424)
+				.typeString("W")
+				.pauseFor(241)
+				.typeString("e")
+				.pauseFor(174)
+				.typeString("l")
+				.pauseFor(222)
+				.typeString("o")
+				.pauseFor(234)
+				.typeString("c")
+				.pauseFor(480)
+				.deleteChars(1)
+				.pauseFor(152)
+				.deleteChars(1)
+				.pauseFor(296)
+				.typeString("c")
+				.pauseFor(144)
+				.typeString("o")
+				.pauseFor(124)
+				.typeString("m")
+				.pauseFor(96)
+				.typeString("e")
+				.pauseFor(596)
+				.typeString("<br />")
+				.pauseFor(2096)
+				//开源布道
+				.typeString("<i>w</i>")
+				.pauseFor(126)
+				.typeString("<i>o</i>")
+				.pauseFor(361)
+				.deleteChars(2)
+				.typeString("我")
+				.pauseFor(807)
+				.deleteChars(1)
+				.pauseFor(410)
+				.typeString("<mark>c</mark>")
+				.pauseFor(118)
+				.typeString("<mark>a</mark>")
+				.pauseFor(118)
+				.typeString("<mark>t</mark>")
+				.pauseFor(1017)
+				.typeString("<i>s</i>")
+				.pauseFor(168)
+				.typeString("<i>a</i>")
+				.pauseFor(231)
+				.typeString("<i>n</i>")
+				.pauseFor(504)
+				.deleteChars(3)
+				.typeString("<mark>彡</mark> ")
+				.pauseFor(1532)
+				.typeString("<br />")
+				.typeString("<i>u</i>")
+				.pauseFor(221)
+				.typeString("<i>i</i>")
+				.pauseFor(386)
+				.deleteChars(1)
+				.pauseFor(144)
+				.deleteChars(1)
+				.pauseFor(546)
+				.typeString("<i>j</i>")
+				.pauseFor(192)
+				.typeString("<i>i</i>")
+				.pauseFor(231)
+				.typeString("<i>h</i>")
+				.pauseFor(248)
+				.typeString("<i>o</i>")
+				.pauseFor(208)
+				.typeString("<i>u</i>")
+				.pauseFor(436)
+				.deleteChars(5)
+				.typeString("今后")
+				.pauseFor(136)
+				.typeString("<i>z</i>")
+				.pauseFor(174)
+				.typeString("<i>u</i>")
+				.pauseFor(192)
+				.typeString("<i>n</i>")
+				.pauseFor(105)
+				.typeString("<i>b</i>")
+				.pauseFor(168)
+				.typeString("<i>z</i>")
+				.typeString("<i>a</i>")
+				.pauseFor(80)
+				.typeString("<i>i</i>")
+				.pauseFor(292)
+				.typeString("<i>z</i>")
+				.pauseFor(144)
+				.typeString("<i>l</i>")
+				.pauseFor(192)
+				.deleteChars(9)
+				.typeString("<br />")
+				.typeString("准备在<strong style='font-size: 2.6rem;'>这里</strong>")
+				.pauseFor(1900)
+				.deleteChars(25)
+				.pauseFor(100)
+				.typeString(`<strong id='openSource' class='domBubble' style='background-color: ${bodyBackgroundColor};font-size: 2rem;'>开源</strong>`)
 				.pauseFor(2000)
 				.typeString(`<strong style='opacity: 0; font-style: italic'>⚪</strong>`)
 				.pauseFor(2000)
-				.typeString(`<strong id='preach' class='domBubble' style='background-color: ${bodyBackgroundColor};font-size: 2.4rem;'>布道</strong>`)
+				.typeString(`<strong id='preach' class='domBubble' style='background-color: ${bodyBackgroundColor};font-size: 2rem;'>布道</strong>`)
 				.pauseFor(1000)
 				.callFunction(() => {
 
@@ -396,12 +515,13 @@
 
 
 						//改变domBubble颜色
-						var bodyBackgroundColor = `rgb(${deltaY / 2 + 125}, ${deltaY / 2 + 125}, ${deltaY / 2 + 125})`
+						bodyBackgroundColor = `rgb(${deltaY / 2 + 125}, ${deltaY / 2 + 125}, ${deltaY / 2 + 125})`
 						console.log(bodyBackgroundColor);
 						const domBubble = document.getElementsByClassName('domBubble')
 						for (let i = 0; i < domBubble.length; i++) {
 							domBubble[i].style.backgroundColor = bodyBackgroundColor;
 						}
+						
 
 					};
 
@@ -424,13 +544,12 @@
 
 
 						//改变domBubble颜色
-						var bodyBackgroundColor = `rgb(${deltaY / 2 + 125}, ${deltaY / 2 + 125}, ${deltaY / 2 + 125})`
+						bodyBackgroundColor = `rgb(${deltaY / 2 + 125}, ${deltaY / 2 + 125}, ${deltaY / 2 + 125})`
 						console.log(bodyBackgroundColor);
 						const domBubble = document.getElementsByClassName('domBubble')
 						for (let i = 0; i < domBubble.length; i++) {
 							domBubble[i].style.backgroundColor = bodyBackgroundColor;
 						}
-
 					};
 
 					const touchstartHandler = (e) => {
@@ -454,7 +573,7 @@
 					setTimeout(function () {
 
 						const title = document.getElementById('title');
-
+						let textColor = `rgb(${textShadowColor}, ${textShadowColor}, ${textShadowColor})`
 						title.style.color = `rgb(${textShadowColor}, ${textShadowColor}, ${textShadowColor})`;
 						title.style.display = 'block';
 						title.classList.add("blinking");
@@ -470,11 +589,87 @@
 							typewriter.style.animation = 'domBubbleMoveUp 1s ease forwards';
 							domBubbleControl.style.animation = 'domBubbleMoveUp 1s ease forwards';
 
+							// 开始内容
+							contentBox(textColor, newCircleBackgroundColor, bodyBackgroundColor);
 						});
 					}, 5000);
 
 				})
 				.start();
+
+		}
+
+
+
+
+		function contentBox(textColor, bodyBackgroundColor, domBubbleBackgroundColor) {
+			console.log('contentBox');
+			// typewriter的zIndex设置为10001添加backgroundColor
+			// domBubbleControlzIndex设置为10002
+			const domBubbleControl = document.getElementById('domBubbleControl');
+			const typewriter = document.getElementById('typewriter');
+			typewriter.style.zIndex = '10001';
+			domBubbleControl.style.zIndex = '10002';
+			typewriter.style.backgroundColor = bodyBackgroundColor;
+
+
+			// 内容
+			const contentBox = document.getElementById('openSourceHTML');
+			contentBox.style.display = 'block';
+			contentBox.style.opacity = 0;
+			contentBox.style.position = 'absolute';
+			contentBox.style.color = textColor;
+			contentBox.style.zIndex = '10000';
+			contentBox.style.backgroundColor = bodyBackgroundColor;
+			// 添加毛玻璃效果
+			contentBox.style.backdropFilter = 'blur(3px)';
+			contentBox.style.top = '6rem';
+			contentBox.style.animation = 'contentBoxExpand 1s ease forwards';
+			setTimeout(function () {
+				contentBox.style.opacity = 1;
+			}, 1000);
+
+
+			// 让contentBox可以上下滑动
+			contentBox.addEventListener('touchstart', function (e) {
+				// 记录开始的位置
+				startY = e.touches[0].clientY;
+			});
+			contentBox.addEventListener('touchmove', function (e) {
+				// 记录移动的位置
+				moveY = e.touches[0].clientY;
+				// 计算移动的距离
+				distanceY = moveY - startY;
+				// 移动盒子
+				contentBox.style.top = contentBox.offsetTop + distanceY + 'px';
+				// 重置起始位置
+				startY = moveY;
+			});
+
+
+			// 监听鼠标滚轮事件
+			contentBox.addEventListener('mousewheel', function (e) {
+				// 记录移动的位置
+				moveY = e.wheelDelta;
+				// 计算移动的距离
+				distanceY = moveY;
+				// 移动盒子
+				contentBox.style.top = contentBox.offsetTop + distanceY + 'px';
+			});
+
+			// 添加domBubble
+			domBubble('#GitHub', textColor, bodyBackgroundColor, 'GitHub 是一个非常受欢迎的代码托管平台，它提供了版本控制和协作功能，让开发者可以在一个平台上进行项目管理和协作。上边的项目可以被其他用户浏览、复制和修改，这也促进了开源软件的发展和共享。');
+			domBubble('#repository', textColor, bodyBackgroundColor, '⌈存储库⌋是指存储和管理代码、文档、图片等文件的地方。注意与"library"区分。');
+			domBubble('#index', textColor, bodyBackgroundColor, '⌈索引⌋在Web开发中，通常会将网站的主页命名为index文件。Web服务器,如果请求的是一个目录,则默认返回该目录下的index文件作为响应。');
+			domBubble('#html', textColor, bodyBackgroundColor, '全称为Hyper Text Markup Language ⌈超文本标记语言⌋,Web页面的标准语言之一,可以添加文本、图片、视频、音频等内容并定义网页的布局、样式和交互行为。');
+
+			const domBubbleColor = document.getElementsByClassName('domBubble')
+			for (let i = 0; i < domBubbleColor.length; i++) {
+				domBubbleColor[i].style.backgroundColor = domBubbleBackgroundColor;
+			}
+
+			//彩蛋
+			const easterEgg = document.getElementById('easterEgg');
 
 		}
 
@@ -503,7 +698,7 @@
 			bubble.style.color = textColor;
 			bubble.style.fontSize = '1.2rem';
 			bubble.style.position = 'fixed';
-			bubble.style.zIndex = '999';
+			bubble.style.zIndex = '99999';
 			bubble.style.padding = '0.5rem';
 			bubble.style.borderRadius = '0.5rem';
 			bubble.textContent = textContent;
@@ -596,23 +791,23 @@
 			const keyframes = `@keyframes fadeIn {
 									0% {
 										opacity: 0.5;
-										font-size: 0em;
+										font-size: 0rem;
 										text-shadow: 0 0 300px rgba(${textShadowColor}, ${textShadowColor}, ${textShadowColor}, 0.5);
 									}
 
 									30% {
 										opacity: 1;
-										font-size: 1em;
+										font-size: 1rem;
 										text-shadow: 0 0 20px rgba(${textShadowColor}, ${textShadowColor}, ${textShadowColor},1);
 									}
 									60% {
 										opacity: 0.5;
-										font-size: 1.5em;
+										font-size: 1.5rem;
 										text-shadow: 0 0 100px rgba(${textShadowColor}, ${textShadowColor}, ${textShadowColor}, 0.5);
 									}
 									100% {
 										opacity: 1;
-										font-size: 2em;
+										font-size: 2rem;
 										text-shadow: 0 0 0px rgba(${textShadowColor}, ${textShadowColor}, ${textShadowColor}, 1);
 									}
 								}`;
@@ -639,7 +834,7 @@
 				}, 500);
 
 				// typewriter动画start
-				typewriterAnimation(bodyBackgroundColor, textShadowColor);
+				typewriterAnimation(bodyBackgroundColor, textShadowColor, newCircleBackgroundColor);
 
 
 			}, 9000);
@@ -659,7 +854,7 @@
 			top: 50%;
 			left: 50%;
 			transform: translate(-50%, -50%);
-			font-size: 2em;
+			font-size: 2rem;
 			font-family: Arial, sans-serif;
 			color: transparent;
 			text-shadow: 0 0 50px rgba(255, 255, 255, 0.5);
@@ -672,7 +867,7 @@
 			top: 50%;
 			left: 50%;
 			transform: translate(-50%, -50%);
-			font-size: 2em;
+			font-size: 2rem;
 			font-family: Arial, sans-serif;
 			color: transparent;
 			opacity: 1;
