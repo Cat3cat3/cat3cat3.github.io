@@ -185,7 +185,8 @@
 
 	<main
 		id="openSourceHTML"
-		style="display: none;"
+		style="display: none;
+		padding: 1rem;"
 	>
 		<p>时间：2023-04-3</p>
 		<p><input type="checkbox">1、注册一个<span
@@ -206,36 +207,39 @@
 		<p><input type="checkbox">4、将更改提交并推送到存储库。</p>
 		<p>如下：</p>
 		<img
-			style="max-width: 100%;"
+			style="max-width: 100vw;"
 			src="./images/GitHubSignUp/1.png"
 			alt="GitHub logo"
 		>
 		<img
-			style="max-width: 100%;"
+			style="max-width: 100vw;"
 			src="./images/GitHubSignUp/2.png"
 			alt="GitHub new repository"
 		>
 		<img
-			style="max-width: 100%;"
+			style="max-width: 100vw;"
 			src="./images/GitHubSignUp/3.png"
 			alt="GitHub repository settings"
 		>
 		<img
-			style="max-width: 100%;"
+			style="max-width: 100vw;"
 			src="./images/GitHubSignUp/4.png"
 			alt="GitHub create new file"
 		>
 		<img
-			style="max-width: 100%;"
+			style="max-width: 100vw;"
 			src="./images/GitHubSignUp/5.png"
 			alt="GitHub commit changes"
 		>
 		<img
-			style="max-width: 100%;"
+			style="max-width: 100vw;"
 			src="./images/GitHubSignUp/6.png"
 			alt="GitHub website deployed"
 		>
+		<!-- 高为10rem的div -->
+		<div style="width: 100vw; height: 5rem; opacity: 0.8;"></div>
 		<p>恭喜，在Web浏览器中访问“{username}.github.io”就可以查看你部署的网站了。</p>
+		<div style="width: 100vw; height: 10rem; opacity: 0.8;"></div>
 		<p>不过，比起这更重要的是你想表达什么，have fun!</p>
 		<br>
 		<br>
@@ -521,7 +525,7 @@
 						for (let i = 0; i < domBubble.length; i++) {
 							domBubble[i].style.backgroundColor = bodyBackgroundColor;
 						}
-						
+
 
 					};
 
