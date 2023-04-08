@@ -186,10 +186,11 @@
 	<main
 		id="openSourceHTML"
 		style="display: none;
-		padding: 1rem;"
+		/* padding: 1rem;"
+		*/
 	>
 		<p>时间：2023-04-3</p>
-		<h1>走向web3的第一步</h1>
+		<h1>我走向web3的第一步</h1>
 		<p><input type="checkbox">1、注册一个<span
 				class='domBubble'
 				id="GitHub"
@@ -197,14 +198,14 @@
 		<p><input type="checkbox">2、创建一个名为“{username}.github.io”的<span
 				class='domBubble'
 				id="repository"
-			>repository</span>，其中“{username}”是您的GitHub用户名。</p>
+			>repository</span>，其中“{username}”是你的GitHub用户名。</p>
 		<p><input type="checkbox">3、在存储库中创建一个<span
 				class='domBubble'
 				id="index"
 			>index</span>.<span
 				class='domBubble'
 				id="html"
-			>html</span>文件，并添加您的网站内容。</p>
+			>html</span>文件，并添加你的网站内容。</p>
 		<p><input type="checkbox">4、将更改提交并推送到存储库。</p>
 		<p>如下：</p>
 		<img
@@ -244,7 +245,10 @@
 		>
 		<!-- 高为10rem的div -->
 		<div style="width: 100%; height: 5rem; opacity: 0.8;"></div>
-		<p>恭喜，在Web浏览器中访问“{username}.github.io”就可以查看你部署的网站了。</p>
+		<p>恭喜，在Web浏览器中访问“{username}.github.io”就可以查看你<span
+				class='domBubble'
+				id="部署"
+			>部署</span>的网站了。</p>
 		<div style="width: 100vw; height: 10rem; opacity: 0.8;"></div>
 		<p>不过，比起这更重要的是你想表达什么，have fun!</p>
 		<br>
@@ -309,7 +313,32 @@
 		id="preachHTML"
 		style="display: none;"
 	>
-		
+		<h1>自问自答</h1>
+		<h3>为什么是走向web3的第一步？</h3>
+		<p>我也不知道是否应该叫"web3",只是现在这个称呼比较火，但是我认为现在的网上邻居们需要去中心化的网络环境，第一步就是从自己开始进行⌈去中心化部署⌋。</p>
+		<h3>这里是什么？</h3>
+		<p>cat3.online，这里将逐渐整理cat3的学习笔记，思考，感悟，以及一些自以为是有趣的东西。</p>
+		<h3>这里是谁？</h3>
+		<p>cat3，这里初衷也是为了解释⌈我是谁？⌋。</p>
+		<h3>向谁解释？</h3>
+		<p>the beautiful world.</p>
+		<h3>这里是为什么？</h3>
+		<p>在生活的过程中，总是会出现一些让我觉得困惑事情，这些事情又让我感到很好奇，想去探个明白。</p>
+		<p>这个过程需要更多的连接，更多的思考，更多的可能性，我需要一个环境,并且自由、可控。</p>
+		<p>我承认这个过程可能会有show off的成分，没办法，比如说，现在我就认为自己比较酷。</p>
+		<h3>这里怎么做？</h3>
+		<p>我想把这些事情记录下来，呈现出来，然后再去思考，再迭代，这样也许能够找到一些答案。</p>
+		<h3>做多久？</h3>
+		<p>到我35岁的时候，我想应该还有一个flag要去尽可能的完成，所以这里的内容直到我35岁。</p>
+		<h3>为什么现在开始？</h3>
+		<p>过去常常认为记录的效率太低下，相比探究一个问题，打个比方，我用思考的方式1分钟能处理1个G的内容，浏览的方式1分钟能处理300M，而记录1分钟只能处理3M的内容，要是我只用键盘可能只能输出1kb，太可笑。所以我一直在思考，如何能够提高记录的效率，最近的AIGC让我看到了可能，在Copilot的辅助下我能输出2kb了!
+		</p>
+		<p>最近也一直在看一些关于大脑的书，文章，发现一些有趣的机制，比如说，大脑的记忆机制，感觉器官收集外部信息，并将其编码成神经电信号。海马体暂存和整合信息。在休息和睡眠时，海马体会将信息传递给皮层进行长期存储。在需要的时候，通过回忆、提示或联想的方式，又将之前编码和存储的信息提取和重现记忆。不过这些信息会⌈失真⌋，目前我想克服这部分的问题。总的来说就是为了追求更高的科学，我想给我的脑做一个延展，用来加速进化和弥补缺陷。
+		</p>
+		<p>接着脑继续，网络也人类集体的大脑的延伸，我憧憬未来科技或人工智能的假设，我认为这样的动作是在参与贡献，我希望人类巨灵能够更早实现，当然它必须是符合伦理可持续的，像EVA里的⌈人类补完计划就显得太迫切了，不太行。</p>
+		<br>
+		<br>
+		<p>to be continued...</p>
 	</main>
 
 	<script src="./js/text.js"></script>
@@ -599,8 +628,41 @@
 							typewriter.style.animation = 'domBubbleMoveUp 1s ease forwards';
 							domBubbleControl.style.animation = 'domBubbleMoveUp 1s ease forwards';
 
+							// typewriter的zIndex设置为10001添加backgroundColor
+							// domBubbleControlzIndex设置为10002
+							typewriter.style.zIndex = '10001';
+							domBubbleControl.style.zIndex = '10002';
+							typewriter.style.backgroundColor = bodyBackgroundColor;
+
+
 							// 开始内容
-							contentBox(textColor, newCircleBackgroundColor, bodyBackgroundColor);
+							contentBox('openSourceHTML', true, textColor, newCircleBackgroundColor, bodyBackgroundColor);
+							contentBox('preachHTML', false, textColor, newCircleBackgroundColor, bodyBackgroundColor);
+
+
+							// 添加domBubble
+							domBubble('#GitHub', textColor, bodyBackgroundColor, 'GitHub 是一个非常受欢迎的代码托管平台，它提供了版本控制和协作功能，让开发者可以在一个平台上进行项目管理和协作。上边的项目可以被其他用户浏览、复制和修改，这也促进了开源软件的发展和共享。');
+							domBubble('#repository', textColor, bodyBackgroundColor, '⌈存储库⌋是指存储和管理代码、文档、图片等文件的地方。注意与"library"⌈库⌋区分。');
+							domBubble('#index', textColor, bodyBackgroundColor, '⌈索引⌋在Web开发中，通常会将网站的主页命名为index文件。Web服务器,如果请求的是一个目录,则默认返回该目录下的index文件作为响应。');
+							domBubble('#html', textColor, bodyBackgroundColor, '全称为Hyper Text Markup Language ⌈超文本标记语言⌋,Web页面的标准语言之一,可以添加文本、图片、视频、音频等内容并定义网页的布局、样式和交互行为。');
+							domBubble('#部署', textColor, bodyBackgroundColor, '在计算机领域中，部署（Deploy）通常指将软件、应用程序、服务或其他计算资源发布到目标环境，并供其他人查看和使用。');
+
+
+							//点击#openSource，openSourceHTML显示，preachHTML隐藏，点击#preach，preachHTML显示，openSourceHTML隐藏
+							let openSourceBtn = document.getElementById("openSource");
+							let preachBtn = document.getElementById("preach");
+							let openSourceHTML = document.getElementById("openSourceHTML");
+							let preachHTML = document.getElementById("preachHTML");
+
+							openSourceBtn.addEventListener("click", function () {
+								openSourceHTML.style.display = "block";
+								preachHTML.style.display = "none";
+							});
+
+							preachBtn.addEventListener("click", function () {
+								openSourceHTML.style.display = "none";
+								preachHTML.style.display = "block";
+							});
 						});
 					}, 10000);
 
@@ -610,22 +672,12 @@
 		}
 
 
-
-
-		function contentBox(textColor, bodyBackgroundColor, domBubbleBackgroundColor) {
+		function contentBox(contentBoxId, isShow, textColor, bodyBackgroundColor, domBubbleBackgroundColor) {
 			console.log('contentBox');
-			// typewriter的zIndex设置为10001添加backgroundColor
-			// domBubbleControlzIndex设置为10002
-			const domBubbleControl = document.getElementById('domBubbleControl');
-			const typewriter = document.getElementById('typewriter');
-			typewriter.style.zIndex = '10001';
-			domBubbleControl.style.zIndex = '10002';
-			typewriter.style.backgroundColor = bodyBackgroundColor;
-
 
 			// 内容
-			const contentBox = document.getElementById('openSourceHTML');
-			contentBox.style.display = 'block';
+			const contentBox = document.getElementById(contentBoxId);
+			contentBox.style.display = isShow ? 'block' : 'none';
 			contentBox.style.opacity = 0;
 			contentBox.style.position = 'absolute';
 			contentBox.style.color = textColor;
@@ -667,12 +719,6 @@
 				contentBox.style.top = contentBox.offsetTop + distanceY + 'px';
 			});
 
-			// 添加domBubble
-			domBubble('#GitHub', textColor, bodyBackgroundColor, 'GitHub 是一个非常受欢迎的代码托管平台，它提供了版本控制和协作功能，让开发者可以在一个平台上进行项目管理和协作。上边的项目可以被其他用户浏览、复制和修改，这也促进了开源软件的发展和共享。');
-			domBubble('#repository', textColor, bodyBackgroundColor, '⌈存储库⌋是指存储和管理代码、文档、图片等文件的地方。注意与"library"⌈库⌋区分。');
-			domBubble('#index', textColor, bodyBackgroundColor, '⌈索引⌋在Web开发中，通常会将网站的主页命名为index文件。Web服务器,如果请求的是一个目录,则默认返回该目录下的index文件作为响应。');
-			domBubble('#html', textColor, bodyBackgroundColor, '全称为Hyper Text Markup Language ⌈超文本标记语言⌋,Web页面的标准语言之一,可以添加文本、图片、视频、音频等内容并定义网页的布局、样式和交互行为。');
-
 			const domBubbleColor = document.getElementsByClassName('domBubble')
 			for (let i = 0; i < domBubbleColor.length; i++) {
 				domBubbleColor[i].style.backgroundColor = domBubbleBackgroundColor;
@@ -682,6 +728,7 @@
 			const easterEgg = document.getElementById('easterEgg');
 
 		}
+
 
 		// 注释方法
 		/**
