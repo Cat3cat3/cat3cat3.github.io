@@ -641,11 +641,11 @@
 
 
 							// 添加domBubble
-							domBubble('#GitHub', textColor, bodyBackgroundColor, 'GitHub 是一个非常受欢迎的代码托管平台，它提供了版本控制和协作功能，让开发者可以在一个平台上进行项目管理和协作。上边的项目可以被其他用户浏览、复制和修改，这也促进了开源软件的发展和共享。');
-							domBubble('#repository', textColor, bodyBackgroundColor, '⌈存储库⌋是指存储和管理代码、文档、图片等文件的地方。注意与"library"⌈库⌋区分。');
-							domBubble('#index', textColor, bodyBackgroundColor, '⌈索引⌋在Web开发中，通常会将网站的主页命名为index文件。Web服务器,如果请求的是一个目录,则默认返回该目录下的index文件作为响应。');
-							domBubble('#html', textColor, bodyBackgroundColor, '全称为Hyper Text Markup Language ⌈超文本标记语言⌋,Web页面的标准语言之一,可以添加文本、图片、视频、音频等内容并定义网页的布局、样式和交互行为。');
-							domBubble('#部署', textColor, bodyBackgroundColor, '在计算机领域中，部署（Deploy）通常指将软件、应用程序、服务或其他计算资源发布到目标环境，并供其他人查看和使用。');
+							domBubble('#GitHub', textColor, newCircleBackgroundColor, 'GitHub 是一个非常受欢迎的代码托管平台，它提供了版本控制和协作功能，让开发者可以在一个平台上进行项目管理和协作。上边的项目可以被其他用户浏览、复制和修改，这也促进了开源软件的发展和共享。');
+							domBubble('#repository', textColor, newCircleBackgroundColor, '⌈存储库⌋是指存储和管理代码、文档、图片等文件的地方。注意与"library"⌈库⌋区分。');
+							domBubble('#index', textColor, newCircleBackgroundColor, '⌈索引⌋在Web开发中，通常会将网站的主页命名为index文件。Web服务器,如果请求的是一个目录,则默认返回该目录下的index文件作为响应。');
+							domBubble('#html', textColor, newCircleBackgroundColor, '全称为Hyper Text Markup Language ⌈超文本标记语言⌋,Web页面的标准语言之一,可以添加文本、图片、视频、音频等内容并定义网页的布局、样式和交互行为。');
+							domBubble('#部署', textColor, newCircleBackgroundColor, '在计算机领域中，部署（Deploy）通常指将软件、应用程序、服务或其他计算资源发布到目标环境，并供其他人查看和使用。');
 
 
 							//点击#openSource，openSourceHTML显示，preachHTML隐藏，点击#preach，preachHTML显示，openSourceHTML隐藏
@@ -772,7 +772,12 @@
 					bubble.style.display = 'none';
 				});
 			});
-		}
+			// 点击到dom以外的区域时，bubble.style.display = 'none';
+			document.addEventListener('click', function (event) {
+				if (!dom.contains(event.target)) {
+					bubble.style.display = 'none';
+				}
+			}
 
 
 
@@ -780,72 +785,72 @@
 
 		// 点击circle停止动画
 		function stopBreath(element) {
-			if (isStopBreath) return;
-			isStopBreath = true;
+					if (isStopBreath) return;
+					isStopBreath = true;
 
-			//circle的动画停止
-			element.classList.add('stopped');
+					//circle的动画停止
+					element.classList.add('stopped');
 
-			//body的动画停止
-			document.body.classList.add('stopped');
+					//body的动画停止
+					document.body.classList.add('stopped');
 
-			//获取当前circle大小与颜色，之后circle开始放到直到占满屏幕
-			let circle = document.querySelector('.circle');
+					//获取当前circle大小与颜色，之后circle开始放到直到占满屏幕
+					let circle = document.querySelector('.circle');
 
-			// 拷贝另一个圆添加到body中
-			let newCircle = circle.cloneNode(true);
-			document.body.appendChild(newCircle);
+					// 拷贝另一个圆添加到body中
+					let newCircle = circle.cloneNode(true);
+					document.body.appendChild(newCircle);
 
-			// newCircle的颜色与大小与circle当前一致
-			let color = window.getComputedStyle(circle).getPropertyValue('background-color');
-			let bodyBackgroundColor = window.getComputedStyle(document.body).getPropertyValue('background-color');
+					// newCircle的颜色与大小与circle当前一致
+					let color = window.getComputedStyle(circle).getPropertyValue('background-color');
+					let bodyBackgroundColor = window.getComputedStyle(document.body).getPropertyValue('background-color');
 
-			newCircle.style.backgroundColor = color;
-			// newCircle的大小与circle当前一致
-			let rect = circle.getBoundingClientRect();
-			newCircle.style.width = rect.width + 'px';
-			newCircle.style.height = rect.height + 'px';
+					newCircle.style.backgroundColor = color;
+					// newCircle的大小与circle当前一致
+					let rect = circle.getBoundingClientRect();
+					newCircle.style.width = rect.width + 'px';
+					newCircle.style.height = rect.height + 'px';
 
-			// 隐藏circle
-			circle.style.display = 'none';
+					// 隐藏circle
+					circle.style.display = 'none';
 
-			// circle开始执行新动画不断扩大占满屏幕
-			newCircle.style.animation = 'expand 5s ease forwards';
-			// position:fixed
-			newCircle.style.position = 'fixed';
+					// circle开始执行新动画不断扩大占满屏幕
+					newCircle.style.animation = 'expand 5s ease forwards';
+					// position:fixed
+					newCircle.style.position = 'fixed';
 
-			// 替换节点
-			circle.parentNode.replaceChild(newCircle, circle);
+					// 替换节点
+					circle.parentNode.replaceChild(newCircle, circle);
 
-			// newCircle超出部分自动隐藏
-			newCircle.style.overflow = 'hidden';
+					// newCircle超出部分自动隐藏
+					newCircle.style.overflow = 'hidden';
 
-			// 等3秒
-			setTimeout(function () {
+					// 等3秒
+					setTimeout(function () {
 
-				// 屏幕中央 渐入 hello world 从模糊到清晰
-				helloWorld(newCircle.style.backgroundColor, bodyBackgroundColor);
-			}, 1000);
+						// 屏幕中央 渐入 hello world 从模糊到清晰
+						helloWorld(newCircle.style.backgroundColor, bodyBackgroundColor);
+					}, 1000);
 
-		}
+				}
 
 
 		// 屏幕中央 渐入 hello world 从模糊到清晰
 		function helloWorld(newCircleBackgroundColor, bodyBackgroundColor) {
-			// //根据传入的颜色进一步操作
-			const rgbaValues = newCircleBackgroundColor.substring(newCircleBackgroundColor.indexOf('(') + 1, newCircleBackgroundColor.lastIndexOf(')')).split(/,\s*/);
-			const alpha = parseFloat(rgbaValues[3]);
-			const colorR = parseFloat(rgbaValues[0]);
+					// //根据传入的颜色进一步操作
+					const rgbaValues = newCircleBackgroundColor.substring(newCircleBackgroundColor.indexOf('(') + 1, newCircleBackgroundColor.lastIndexOf(')')).split(/,\s*/);
+					const alpha = parseFloat(rgbaValues[3]);
+					const colorR = parseFloat(rgbaValues[0]);
 
-			// 判断text是黑色还是白色
-			const textShadowColor = colorR === 0 ? 255 : 0;
+					// 判断text是黑色还是白色
+					const textShadowColor = colorR === 0 ? 255 : 0;
 
 
-			hello.innerHTML = "Hello World";
-			hello.style.animation = "fadeIn 8s ease forwards";
+					hello.innerHTML = "Hello World";
+					hello.style.animation = "fadeIn 8s ease forwards";
 
-			// 创建style标签
-			const keyframes = `@keyframes fadeIn {
+					// 创建style标签
+					const keyframes = `@keyframes fadeIn {
 									0% {
 										opacity: 0.5;
 										font-size: 0rem;
@@ -869,34 +874,34 @@
 									}
 								}`;
 
-			const styleSheet = document.createElement("style");
-			styleSheet.innerHTML = keyframes;
-			document.head.appendChild(styleSheet);
+					const styleSheet = document.createElement("style");
+					styleSheet.innerHTML = keyframes;
+					document.head.appendChild(styleSheet);
 
 
-			// 等待9秒后
-			setTimeout(function () {
-				console.log("hello world");
+					// 等待9秒后
+					setTimeout(function () {
+						console.log("hello world");
 
 
 
-				// 显示typewriter
-				// typewriter的颜色为textShadowColor
-				typewriterDom.style.color = `rgb(${textShadowColor}, ${textShadowColor}, ${textShadowColor})`;
-				typewriterDom.style.display = 'block';
+						// 显示typewriter
+						// typewriter的颜色为textShadowColor
+						typewriterDom.style.color = `rgb(${textShadowColor}, ${textShadowColor}, ${textShadowColor})`;
+						typewriterDom.style.display = 'block';
 
-				// 等待1s隐藏hello world
-				setTimeout(function () {
-					hello.style.display = 'none';
-				}, 500);
+						// 等待1s隐藏hello world
+						setTimeout(function () {
+							hello.style.display = 'none';
+						}, 500);
 
-				// typewriter动画start
-				typewriterAnimation(bodyBackgroundColor, textShadowColor, newCircleBackgroundColor);
+						// typewriter动画start
+						typewriterAnimation(bodyBackgroundColor, textShadowColor, newCircleBackgroundColor);
 
 
-			}, 9000);
+					}, 9000);
 
-		}
+				}
 
 
 
