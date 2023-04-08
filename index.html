@@ -777,7 +777,8 @@
 				if (!dom.contains(event.target)) {
 					bubble.style.display = 'none';
 				}
-			}
+			})
+		}
 
 
 
@@ -785,72 +786,72 @@
 
 		// 点击circle停止动画
 		function stopBreath(element) {
-					if (isStopBreath) return;
-					isStopBreath = true;
+			if (isStopBreath) return;
+			isStopBreath = true;
 
-					//circle的动画停止
-					element.classList.add('stopped');
+			//circle的动画停止
+			element.classList.add('stopped');
 
-					//body的动画停止
-					document.body.classList.add('stopped');
+			//body的动画停止
+			document.body.classList.add('stopped');
 
-					//获取当前circle大小与颜色，之后circle开始放到直到占满屏幕
-					let circle = document.querySelector('.circle');
+			//获取当前circle大小与颜色，之后circle开始放到直到占满屏幕
+			let circle = document.querySelector('.circle');
 
-					// 拷贝另一个圆添加到body中
-					let newCircle = circle.cloneNode(true);
-					document.body.appendChild(newCircle);
+			// 拷贝另一个圆添加到body中
+			let newCircle = circle.cloneNode(true);
+			document.body.appendChild(newCircle);
 
-					// newCircle的颜色与大小与circle当前一致
-					let color = window.getComputedStyle(circle).getPropertyValue('background-color');
-					let bodyBackgroundColor = window.getComputedStyle(document.body).getPropertyValue('background-color');
+			// newCircle的颜色与大小与circle当前一致
+			let color = window.getComputedStyle(circle).getPropertyValue('background-color');
+			let bodyBackgroundColor = window.getComputedStyle(document.body).getPropertyValue('background-color');
 
-					newCircle.style.backgroundColor = color;
-					// newCircle的大小与circle当前一致
-					let rect = circle.getBoundingClientRect();
-					newCircle.style.width = rect.width + 'px';
-					newCircle.style.height = rect.height + 'px';
+			newCircle.style.backgroundColor = color;
+			// newCircle的大小与circle当前一致
+			let rect = circle.getBoundingClientRect();
+			newCircle.style.width = rect.width + 'px';
+			newCircle.style.height = rect.height + 'px';
 
-					// 隐藏circle
-					circle.style.display = 'none';
+			// 隐藏circle
+			circle.style.display = 'none';
 
-					// circle开始执行新动画不断扩大占满屏幕
-					newCircle.style.animation = 'expand 5s ease forwards';
-					// position:fixed
-					newCircle.style.position = 'fixed';
+			// circle开始执行新动画不断扩大占满屏幕
+			newCircle.style.animation = 'expand 5s ease forwards';
+			// position:fixed
+			newCircle.style.position = 'fixed';
 
-					// 替换节点
-					circle.parentNode.replaceChild(newCircle, circle);
+			// 替换节点
+			circle.parentNode.replaceChild(newCircle, circle);
 
-					// newCircle超出部分自动隐藏
-					newCircle.style.overflow = 'hidden';
+			// newCircle超出部分自动隐藏
+			newCircle.style.overflow = 'hidden';
 
-					// 等3秒
-					setTimeout(function () {
+			// 等3秒
+			setTimeout(function () {
 
-						// 屏幕中央 渐入 hello world 从模糊到清晰
-						helloWorld(newCircle.style.backgroundColor, bodyBackgroundColor);
-					}, 1000);
+				// 屏幕中央 渐入 hello world 从模糊到清晰
+				helloWorld(newCircle.style.backgroundColor, bodyBackgroundColor);
+			}, 1000);
 
-				}
+		}
 
 
 		// 屏幕中央 渐入 hello world 从模糊到清晰
 		function helloWorld(newCircleBackgroundColor, bodyBackgroundColor) {
-					// //根据传入的颜色进一步操作
-					const rgbaValues = newCircleBackgroundColor.substring(newCircleBackgroundColor.indexOf('(') + 1, newCircleBackgroundColor.lastIndexOf(')')).split(/,\s*/);
-					const alpha = parseFloat(rgbaValues[3]);
-					const colorR = parseFloat(rgbaValues[0]);
+			// //根据传入的颜色进一步操作
+			const rgbaValues = newCircleBackgroundColor.substring(newCircleBackgroundColor.indexOf('(') + 1, newCircleBackgroundColor.lastIndexOf(')')).split(/,\s*/);
+			const alpha = parseFloat(rgbaValues[3]);
+			const colorR = parseFloat(rgbaValues[0]);
 
-					// 判断text是黑色还是白色
-					const textShadowColor = colorR === 0 ? 255 : 0;
+			// 判断text是黑色还是白色
+			const textShadowColor = colorR === 0 ? 255 : 0;
 
 
-					hello.innerHTML = "Hello World";
-					hello.style.animation = "fadeIn 8s ease forwards";
+			hello.innerHTML = "Hello World";
+			hello.style.animation = "fadeIn 8s ease forwards";
 
-					// 创建style标签
-					const keyframes = `@keyframes fadeIn {
+			// 创建style标签
+			const keyframes = `@keyframes fadeIn {
 									0% {
 										opacity: 0.5;
 										font-size: 0rem;
@@ -874,34 +875,34 @@
 									}
 								}`;
 
-					const styleSheet = document.createElement("style");
-					styleSheet.innerHTML = keyframes;
-					document.head.appendChild(styleSheet);
+			const styleSheet = document.createElement("style");
+			styleSheet.innerHTML = keyframes;
+			document.head.appendChild(styleSheet);
 
 
-					// 等待9秒后
-					setTimeout(function () {
-						console.log("hello world");
+			// 等待9秒后
+			setTimeout(function () {
+				console.log("hello world");
 
 
 
-						// 显示typewriter
-						// typewriter的颜色为textShadowColor
-						typewriterDom.style.color = `rgb(${textShadowColor}, ${textShadowColor}, ${textShadowColor})`;
-						typewriterDom.style.display = 'block';
+				// 显示typewriter
+				// typewriter的颜色为textShadowColor
+				typewriterDom.style.color = `rgb(${textShadowColor}, ${textShadowColor}, ${textShadowColor})`;
+				typewriterDom.style.display = 'block';
 
-						// 等待1s隐藏hello world
-						setTimeout(function () {
-							hello.style.display = 'none';
-						}, 500);
+				// 等待1s隐藏hello world
+				setTimeout(function () {
+					hello.style.display = 'none';
+				}, 500);
 
-						// typewriter动画start
-						typewriterAnimation(bodyBackgroundColor, textShadowColor, newCircleBackgroundColor);
+				// typewriter动画start
+				typewriterAnimation(bodyBackgroundColor, textShadowColor, newCircleBackgroundColor);
 
 
-					}, 9000);
+			}, 9000);
 
-				}
+		}
 
 
 
