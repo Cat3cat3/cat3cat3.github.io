@@ -1,0 +1,307 @@
+[
+	{
+		"name": "Integer",
+		"description": "Represents integer values",
+		"example": "42"
+	},
+	{
+		"name": "Float",
+		"description": "Represents decimal values",
+		"example": "3.14"
+	},
+	{
+		"name": "Boolean",
+		"description": "Represents true or false",
+		"example": "true"
+	},
+	{
+		"name": "String",
+		"description": "Represents text data as a sequence of characters",
+		"example": "\"Hello, World!\""
+	},
+	{
+		"name": "List",
+		"description": "Represents an ordered collection of elements",
+		"example": "[1, 2, 3]"
+	},
+	{
+		"name": "Tuple",
+		"description": "Similar to a list, but elements are immutable",
+		"example": "(1, 2, 3)"
+	},
+	{
+		"name": "Dictionary",
+		"description": "Represents a collection of key-value pairs",
+		"example": "{\"name\": \"John\", \"age\": 25}"
+	},
+	{
+		"name": "Set",
+		"description": "Represents an unordered collection of unique elements",
+		"example": "{1, 2, 3}"
+	},
+	{
+		"name": "Character",
+		"description": "Represents a single character",
+		"example": "'A'"
+	},
+	{
+		"name": "Byte",
+		"description": "Represents the smallest unit of computer storage",
+		"example": "0xFF"
+	},
+	{
+		"name": "Long Integer",
+		"description": "Represents larger range of integer values",
+		"example": "1234567890"
+	},
+	{
+		"name": "Null",
+		"description": "Represents a missing or null value",
+		"example": "null"
+	},
+	{
+		"name": "Enumeration",
+		"description": "Represents a set of named constants with discrete values",
+		"example": "Color.RED"
+	},
+	{
+		"name": "Pointer",
+		"description": "Represents the address of another object in memory",
+		"example": "0x7fff5fbff7c0"
+	},
+	{
+		"name": "Array",
+		"description": "Represents an ordered collection of elements of the same type",
+		"example": "[1, 2, 3]"
+	},
+	{
+		"name": "Struct",
+		"description": "Represents a composite type consisting of different data types",
+		"example": "{\"name\": \"John\", \"age\": 25}"
+	},
+	{
+		"name": "Class",
+		"description": "Concept in object-oriented programming that encapsulates data and operations",
+		"example": "Person{name: \"John\", age: 25}"
+	},
+	{
+		"name": "File",
+		"description": "Represents a computer file",
+		"example": "file.txt"
+	},
+	{
+		"name": "Image",
+		"description": "Represents image data",
+		"example": "image.jpg"
+	},
+	{
+		"name": "Audio",
+		"description": "Represents audio data",
+		"example": "audio.mp3"
+	},
+	{
+		"name": "Video",
+		"description": "Represents video data",
+		"example": "video.mp4"
+	},
+	{
+		"name": "Database",
+		"description": "Represents a collection of data organized in a structured format",
+		"example": "users"
+	},
+	{
+		"name": "Integer",
+		"description": "Represents integer values",
+		"example": "42"
+	},
+	{
+		"name": "Float",
+		"description": "Represents decimal values",
+		"example": "3.14"
+	},
+	{
+		"name": "Boolean",
+		"description": "Represents true or false",
+		"example": "true"
+	},
+	{
+		"name": "String",
+		"description": "Represents text data as a sequence of characters",
+		"example": "\"Hello, World!\""
+	},
+	{
+		"name": "List",
+		"description": "Represents an ordered collection of elements",
+		"example": "[1, 2, 3]"
+	},
+	{
+		"name": "Tuple",
+		"description": "Similar to a list, but elements are immutable",
+		"example": "(1, 2, 3)"
+	},
+	{
+		"name": "Dictionary",
+		"description": "Represents a collection of key-value pairs",
+		"example": "{\"name\": \"John\", \"age\": 25}"
+	},
+	{
+		"name": "Set",
+		"description": "Represents an unordered collection of unique elements",
+		"example": "{1, 2, 3}"
+	},
+	{
+		"name": "Character",
+		"description": "Represents a single character",
+		"example": "'A'"
+	},
+	{
+		"name": "Byte",
+		"description": "Represents the smallest unit of computer storage",
+		"example": "0xFF"
+	},
+	{
+		"name": "Long Integer",
+		"description": "Represents larger range of integer values",
+		"example": "1234567890"
+	},
+	{
+		"name": "Null",
+		"description": "Represents a missing or null value",
+		"example": "null"
+	},
+	{
+		"name": "Enumeration",
+		"description": "Represents a set of named constants with discrete values",
+		"example": "Color.RED"
+	},
+	{
+		"name": "Pointer",
+		"description": "Represents the address of another object in memory",
+		"example": "0x7fff5fbff7c0"
+	},
+	{
+		"name": "Array",
+		"description": "Represents an ordered collection of elements of the same type",
+		"example": "[1, 2, 3]"
+	},
+	{
+		"name": "Struct",
+		"description": "Represents a composite type consisting of different data types",
+		"example": "{\"name\": \"John\", \"age\": 25}"
+	},
+	{
+		"name": "Class",
+		"description": "Concept in object-oriented programming that encapsulates data and operations",
+		"example": "Person{name: \"John\", age: 25}"
+	},
+	{
+		"name": "File",
+		"description": "Represents a computer file",
+		"example": "file.txt"
+	},
+	{
+		"name": "Image",
+		"description": "Represents image data",
+		"example": "image.jpg"
+	},
+	{
+		"name": "Audio",
+		"description": "Represents audio data",
+		"example": "audio.mp3"
+	},
+	{
+		"name": "Video",
+		"description": "Represents video data",
+		"example": "video.mp4"
+	},
+	{
+		"name": "Database",
+		"description": "Represents a collection of data organized in a structured format",
+		"example": "users"
+	},
+	{
+		"name": "Database",
+		"description": "Represents a collection of data organized in a structured format",
+		"example": "users"
+	},
+	{
+		"name": "Date",
+		"description": "Represents a specific date",
+		"example": "\"2023-05-18\""
+	},
+	{
+		"name": "Time",
+		"description": "Represents a specific time",
+		"example": "\"12:34:56\""
+	},
+	{
+		"name": "DateTime",
+		"description": "Represents a specific date and time",
+		"example": "\"2023-05-18T12:34:56Z\""
+	},
+	{
+		"name": "Color",
+		"description": "Represents a color value",
+		"example": "\"#FF0000\""
+	},
+	{
+		"name": "URL",
+		"description": "Represents a Uniform Resource Locator",
+		"example": "\"https://example.com\""
+	},
+	{
+		"name": "EmailAddress",
+		"description": "Represents an email address",
+		"example": "\"user@example.com\""
+	},
+	{
+		"name": "IPv4Address",
+		"description": "Represents an IPv4 address",
+		"example": "\"192.0.2.1\""
+	},
+	{
+		"name": "IPv6Address",
+		"description": "Represents an IPv6 address",
+		"example": "\"2001:0db8:85a3:0000:0000:8a2e:0370:7334\""
+	},
+	{
+		"name": "RegularExpression",
+		"description": "Represents a pattern-matching expression",
+		"example": "\"[a-zA-Z]+[0-9]+\""
+	},
+	{
+		"name": "UUID",
+		"description": "Represents a universally unique identifier",
+		"example": "\"550e8400-e29b-41d4-a716-446655440000\""
+	},
+	{
+		"name": "Money",
+		"description": "Represents a monetary value",
+		"example": "\"$100.50\""
+	},
+	{
+		"name": "Percentage",
+		"description": "Represents a percentage value",
+		"example": "\"25%\""
+	},
+	{
+		"name": "Matrix",
+		"description": "Represents a two-dimensional array or grid",
+		"example": "[[1, 2, 3], [4, 5, 6], [7, 8, 9]]"
+	},
+	{
+		"name": "Graph",
+		"description": "Represents a collection of nodes and edges",
+		"example": "{\"nodes\": [\"A\", \"B\", \"C\"], \"edges\": [[\"A\", \"B\"], [\"B\", \"C\"]]}"
+	},
+	{
+		"name": "AudioSample",
+		"description": "Represents a single sample of audio data",
+		"example": "0.25"
+	},
+	{
+		"name": "VideoFrame",
+		"description": "Represents a single frame of video data",
+		"example": "{\"width\": 1920, \"height\": 1080, \"pixels\": \"[...]\"}"
+	}
+]
