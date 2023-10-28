@@ -1,0 +1,211 @@
+<!--
+ * @Author: Cat3cat3
+ * @Date: 2023-10-28 22:24:07
+ * @LastEditTime: 2023-10-28 22:47:40
+ * @FilePath: \undefinedc:\Users\93039\Desktop\转经筒.html
+ * @Description: 
+ * 
+-->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        /* 设置主题颜色 */
+        :root {
+            --primary-color: #008000;
+            --secondary-color: #ffe380;
+        }
+
+
+
+        /* 鼠标移入颜色淡化 */
+        .dharmaWheel:hover .slice {
+            opacity: 0.8;
+        }
+
+        /* 自定义尺寸和阴影 */
+        .dharmaWheel {
+            width: 300px;
+            height: 300px;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .dharmaWheel {
+            width: 200px;
+            height: 200px;
+            position: relative;
+            transform-style: preserve-3d;
+        }
+
+        .slice {
+            background: radial-gradient(circle at 50% 50%,
+                    var(--primary-color) 50%,
+                    var(--secondary-color) 50.1%);
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #ddd;
+
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .slice:nth-child(1) {
+            transform: rotateY(0deg) translateZ(100px);
+        }
+
+        .slice:nth-child(2) {
+            transform: rotateY(45deg) translateZ(100px);
+        }
+
+        .slice:nth-child(3) {
+            transform: rotateY(90deg) translateZ(100px);
+        }
+
+        .slice:nth-child(4) {
+            transform: rotateY(135deg) translateZ(100px);
+        }
+
+        .slice:nth-child(5) {
+            transform: rotateY(180deg) translateZ(100px);
+        }
+
+        .slice:nth-child(6) {
+            transform: rotateY(225deg) translateZ(100px);
+        }
+
+        .slice:nth-child(7) {
+            transform: rotateY(270deg) translateZ(100px);
+        }
+
+        .slice:nth-child(8) {
+            transform: rotateY(315deg) translateZ(100px);
+        }
+
+        .dharmaWheel:hover {
+            animation: spin 10s linear infinite;
+        }
+
+        @keyframes spin {
+            100% {
+                transform: rotateY(360deg);
+            }
+        }
+
+        <style>
+
+        /* 新增外围圆环 */
+        .rim {
+            width: 400px;
+            height: 400px;
+            border: 20px solid var(--primary-color);
+            border-radius: 50%;
+            position: relative;
+        }
+
+        /* 添加佛经文字 */
+        .verse {
+            position: absolute;
+            bottom: 20px;
+            width: 80%;
+            color: #000;
+            text-align: center;
+        }
+
+        .rim:nth-child(1) {
+            border-color: var(--primary-color);
+        }
+
+        .rim:nth-child(2) {
+            border-color: var(--secondary-color);
+        }
+
+        .rim:nth-child(3) {
+            border-color: pink;
+        }
+
+        .rim:nth-child(2) {
+            opacity: 0.8;
+        }
+
+        .rim:nth-child(3) {
+            opacity: 0.6;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="rim">
+
+
+    </div>
+
+    <div class="cylinder">
+        <div class="rim">
+            <div class="dharmaWheel">
+                <div class="slice">卐</div>
+                <div class="slice">卐</div>
+                <div class="slice">卐</div>
+                <div class="slice">卐</div>
+                <div class="slice">卐</div>
+                <div class="slice">卐</div>
+                <div class="slice">卐</div>
+                <div class="slice">卐</div>
+
+            </div>
+
+            <div class="verse">
+                无常天地尽,唯有佛法真。
+            </div>
+        </div>
+
+        <div class="rim">
+            <div class="dharmaWheel">
+                <div class="slice">卐</div>
+                <div class="slice">卐</div>
+                <div class="slice">卐</div>
+                <div class="slice">卐</div>
+                <div class="slice">卐</div>
+                <div class="slice">卐</div>
+                <div class="slice">卐</div>
+                <div class="slice">卐</div>
+
+            </div>
+
+            <div class="verse">
+                无常天地尽,唯有佛法真。
+            </div>
+        </div>
+
+        <div class="rim">
+            <div class="dharmaWheel">
+                <div class="slice">卐</div>
+                <div class="slice">卐</div>
+                <div class="slice">卐</div>
+                <div class="slice">卐</div>
+                <div class="slice">卐</div>
+                <div class="slice">卐</div>
+                <div class="slice">卐</div>
+                <div class="slice">卐</div>
+
+            </div>
+
+            <div class="verse">
+                无常天地尽,唯有佛法真。
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
