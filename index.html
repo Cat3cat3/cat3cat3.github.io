@@ -1,956 +1,2122 @@
 <!DOCTYPE html>
-<html lang="zh">
+
 
 <head>
-	<meta charset="utf-8">
-	<meta
-		name="viewport"
-		content="width=device-width, initial-scale=1"
-	>
-	<!-- 标签图标 -->
-	<link
-		rel="shortcut icon"
-		href="./cat3.svg"
-		type="image/x-icon"
-	>
+    <meta
+        http-equiv="Content-Type"
+        content="text/html; charset=UTF-8"
+    >
+    <title>Kevin Wu | kevinwu3@foxmail.com</title>
+    <link
+        href="./resume/kevin_files/style.css"
+        rel="stylesheet"
+    >
+    <style type="text/css">
+        #_copy {
+            align-items: center;
+            background: #4494d5;
+            border-radius: 3px;
+            color: #fff;
+            cursor: pointer;
+            display: flex;
+            font-size: 13px;
+            height: 30px;
+            justify-content: center;
+            position: absolute;
+            width: 60px;
+            z-index: 1000
+        }
 
-	<title>启</title>
-	<style>
-		body {
-			margin: 0;
-			overflow: hidden;
-			height: 100vh;
-			width: 100vw;
-			background-color: rgba(128, 128, 128, 1);
-			animation: body 9s ease-in-out infinite;
-		}
+        #select-tooltip,
+        #sfModal,
+        .modal-backdrop,
+        div[id^=reader-helper] {
+            display: none !important
+        }
 
+        .modal-open {
+            overflow: auto !important
+        }
 
-		.circle {
-			position: absolute;
-			overflow: hidden;
-			top: 50%;
-			left: 50%;
-			transform: translate(-50%, -50%);
-			width: 50px;
-			height: 50px;
-			border-radius: 50%;
-			background-color: rgba(255, 255, 255, 1);
-			animation: breath 16s infinite;
-			z-index: 1;
-			cursor: pointer;
-		}
+        ._sf_adjust_body {
+            padding-right: 0 !important
+        }
 
-		#domBubbleControl {
-			height: 2rem;
-			width: 2rem;
-			cursor: move;
-			display: none;
-			z-index: 1000;
-			position: absolute;
-			top: 50%;
-			left: 50%;
-			transform: translate(-50%, -50%);
-			transition: all 0.01s ease;
-		}
+        .super_copy_btns_div {
+            position: fixed;
+            width: 154px;
+            left: 10px;
+            top: 45%;
+            background: #e7f1ff;
+            border: 2px solid #4595d5;
+            font-weight: 600;
+            border-radius: 2px;
+            font-family: -apple-system, BlinkMacSystemFont, Segoe UI, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Helvetica Neue, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
+            z-index: 5000
+        }
 
-		#title {
-			position: absolute;
-			top: 70%;
-			left: 50%;
-			transform: translate(-50%, -50%);
-			font-size: 2rem;
-			color: rgba(255, 255, 255, 1);
-			z-index: 1000;
-			transition: all 0.01s ease;
-			display: none;
-		}
+        .super_copy_btns_logo {
+            width: 100%;
+            background: #4595d5;
+            text-align: center;
+            font-size: 12px;
+            color: #e7f1ff;
+            line-height: 30px;
+            height: 30px
+        }
 
-		.control {
-			position: absolute;
-			font-size: 2rem;
-			/* 字体水平垂直居中 */
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			height: 100%;
-			width: 100%;
+        .super_copy_btns_btn {
+            display: block;
+            width: 128px;
+            height: 28px;
+            background: #7f5711;
+            border-radius: 4px;
+            color: #fff;
+            font-size: 12px;
+            border: 0;
+            outline: 0;
+            margin: 8px auto;
+            font-weight: 700;
+            cursor: pointer;
+            opacity: .9
+        }
 
-		}
+        .super_copy_btns_btn:hover {
+            opacity: .8
+        }
 
-		.blinking {
-			animation: blinker 8s linear infinite;
-		}
+        .super_copy_btns_btn:active {
+            opacity: 1
+        }
+    </style>
+    <style>
+        .crx_bdwk_down_wrap {
+            top: 70%;
+            left: 0;
+            position: fixed;
+            z-index: 99999999;
+            color: #fff;
+            user-select: none;
+        }
 
-		@keyframes blinker {
-			40% {
-				opacity: 0;
-			}
+        .crx_bdwk_down_wrap .crx_bdwk_down_loading {
+            background-color: #666;
+            cursor: wait;
+            width: 126px;
+            text-align: center;
+            padding: 16px 0;
+        }
 
-			60% {
-				opacity: 0;
-			}
-		}
+        .crx_bdwk_down_wrap .crx_bdwk_down_loading p {
+            font-size: 14px;
+        }
 
-		@keyframes body {
-			0% {
-				background-color: rgba(0, 0, 0, 1);
-			}
+        .crx_bdwk_down_wrap .crx_bdwk_down_loading small {
+            font-size: 10px;
+        }
 
-			50% {
-				background-color: rgba(255, 255, 255, 1);
-			}
+        .crx_bdwk_down_wrap .crx_bdwk_down_btn {
+            width: 126px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 14px;
+            background-color: #dd5a57;
+            position: relative;
+        }
 
-			100% {
-				background-color: rgba(0, 0, 0, 1);
-			}
-		}
+        .crx_bdwk_down_wrap .crx_bdwk_down_types {
+            display: flex;
+            text-align: center;
+            align-items: center;
+            background-color: #666;
+            font-size: 12px;
+        }
 
-		@keyframes breath {
-			0% {
-				transform: translate(-50%, -50%) scale(0);
-				background-color: rgba(0, 0, 0, 0);
-			}
+        .crx_bdwk_down_wrap .crx_bdwk_down_types div {
+            position: relative;
+        }
 
-			25% {
-				transform: translate(-50%, -50%) scale(3);
-				background-color: rgba(0, 0, 0, 1);
-			}
+        .crx_bdwk_down_wrap .crx_bdwk_down_types div:after {
+            content: ' ';
+            height: 12px;
+            width: 1px;
+            background-color: #eee;
+            position: absolute;
+            top: 10px;
+            right: 0;
+            transform: scaleX(0.5);
+        }
 
-			50% {
-				transform: translate(-50%, -50%) scale(0);
-				background-color: rgba(0, 0, 0, 0);
-			}
+        .crx_bdwk_down_wrap .crx_bdwk_down_types div:last-child:after {
+            display: none;
+        }
 
-			50% {
-				transform: translate(-50%, -50%) scale(0);
-				background-color: rgba(255, 255, 255, 0);
-			}
+        .crx_bdwk_down_wrap .crx_bdwk_down_types_check {
+            flex: 1;
+            color: #dd5a57;
+            padding: 8px;
+            cursor: pointer;
+            font-weight: bold;
+        }
 
-			75% {
-				transform: translate(-50%, -50%) scale(3);
-				background-color: rgba(255, 255, 255, 1);
-			}
-
-			100% {
-				transform: translate(-50%, -50%) scale(0);
-				background-color: rgba(255, 255, 255, 0);
-			}
-		}
-
-		@keyframes expand {
-			0% {
-				transform: translate(-50%, -50%) scale(1);
-			}
-
-			100% {
-				transform: translate(-50%, -50%) scale(20);
-			}
-		}
-
-		@keyframes domBubbleControlExpand {
-			0% {
-				transform: translate(-50%, -50%) scale(0);
-			}
-
-			100% {
-				transform: translate(-50%, -50%) scale(1);
-			}
-		}
-
-
-
-		.stopped {
-			animation-play-state: paused;
-		}
-	</style>
+        .crx_bdwk_down_wrap .crx_bdwk_down_types_uncheck {
+            flex: 1;
+            padding: 8px;
+            cursor: pointer;
+            color: #fff;
+            font-weight: lighter;
+        }
+    </style><input
+        type="hidden"
+        id="_w_marrow"
+        data-inspect-config="3"
+    >
+    <script
+        type="text/javascript"
+        src="chrome-extension://odphnbhiddhdpoccbialllejaajemdio/scripts/inspector.js"
+    ></script>
 </head>
 
 <body>
-	<div
-		class="circle"
-		onclick="stopBreath(this);"
-	></div>
-	<div id="hello"></div>
-	<div id="typewriter">Hello World</div>
-	<div id="domBubbleControl">
-		<strong
-			id="control"
-			class="control"
-		>
-			⚪
-		</strong>
-	</div>
-	<header id="title">这里</header>
-
-	<main
-		id="openSourceHTML"
-		style="display: none;
-		/* padding: 1rem;"
-		*/
-	>
-		<p>时间：2023-04-3</p>
-		<p>更新：2023-04-17</p>
-		<p><input type="checkbox">1、注册一个<span
-				class='domBubble'
-				id="GitHub"
-			>GitHub</span>账户。</p>
-		<p><input type="checkbox">2、创建一个名为“{username}.github.io”的<span
-				class='domBubble'
-				id="repository"
-			>repository</span>，其中“{username}”是你的GitHub用户名。</p>
-		<p><input type="checkbox">3、在存储库中创建一个<span
-				class='domBubble'
-				id="index"
-			>index</span>.<span
-				class='domBubble'
-				id="html"
-			>html</span>文件，并添加你的网站内容。</p>
-		<p><input type="checkbox">4、将更改提交并推送到存储库。</p>
-		<p>如下：</p>
-		<img
-			style="max-width: 100%;"
-			src="./images/GitHubSignUp/1.png"
-			alt="GitHub logo"
-		>
-		<img
-			style="max-width: 100%;
-			margin-top: 1rem;"
-			src="./images/GitHubSignUp/2.png"
-			alt="GitHub new repository"
-		>
-		<img
-			style="max-width: 100%;
-			margin-top: 1rem;"
-			src="./images/GitHubSignUp/3.png"
-			alt="GitHub repository settings"
-		>
-		<img
-			style="max-width: 100%;
-			margin-top: 1rem;"
-			src="./images/GitHubSignUp/4.png"
-			alt="GitHub create new file"
-		>
-		<img
-			style="max-width: 100%;
-			margin-top: 1rem;"
-			src="./images/GitHubSignUp/5.png"
-			alt="GitHub commit changes"
-		>
-		<img
-			style="max-width: 100%;
-			margin-top: 1rem;"
-			src="./images/GitHubSignUp/6.png"
-			alt="GitHub website deployed"
-		>
-		<!-- 高为10rem的div -->
-		<div style="width: 100%; height: 5rem; opacity: 0.8;"></div>
-		<p>恭喜，在Web浏览器中访问“{username}.github.io”就可以查看你<span
-				class='domBubble'
-				id="部署"
-			>部署</span>的网站了。</p>
-		<div style="width: 100vw; height: 10rem; opacity: 0.8;"></div>
-		<p>不过，比起这更重要的是你想表达什么，have fun!</p>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<div
-			id="easterEgg"
-			style="width: 100%; height: 1rem; text-align: center;
-		"
-		>😏</div>
-		<div style="width: 100%; height: 1rem; opacity: 0.8;"></div>
-		<div style="width: 100%; height: 1rem; opacity: 0.6;"></div>
-		<div style="width: 100%; height: 1rem; opacity: 0.4;"></div>
-		<div style="width: 100%; height: 1rem; opacity: 0.2;"></div>
-
-	</main>
-	<main
-		id="preachHTML"
-		style="display: none;"
-	>
-		<h1>自问自答</h1>
-		<h3>这里是什么？</h3>
-		<p>cat3.online，这里将逐渐整理cat3的学习笔记，思考，感悟，以及一些自以为是有趣的东西，然后通过网络上像神经元一样构建连接。</p>
-		<h3>这里是谁？</h3>
-		<p>cat3，这里初衷也是为了解释⌈我是谁？⌋。</p>
-		<h3>向谁解释？</h3>
-		<p>the beautiful world.</p>
-		<h3>这里是为什么？</h3>
-		<p>在生活的过程中，总是会出现一些让我觉得困惑事情，这些事情又让我感到很好奇，想去探个明白。</p>
-		<p>这个过程需要更多的连接，更多的思考，更多的可能性，我需要一个环境,并且自由、可控。</p>
-		<p>我承认这个过程可能会有show off的成分，没办法，比如说，现在我就认为自己比较酷。</p>
-		<h3>这里怎么做？</h3>
-		<p>我想把这些事情记录下来，呈现出来，然后再去思考，再迭代，这样也许能够找到一些答案。</p>
-		<p>这里不设置引导式访问，像神经元一样连接每一个单元，自由探索、开放空间、处处彩蛋。</p>
-		<h3>做多久？</h3>
-		<p>到我35岁的时候，我想应该还有一个flag要去尽可能的完成，所以这里的内容直到我35岁。</p>
-		<h3>为什么现在开始？</h3>
-		<p>过去常常认为记录的效率太低下，打个比方，同样探究一个问题，我用思考的方式1分钟能处理1个G的内容，浏览的方式1分钟能处理300M，而记录1分钟只能处理3M的内容，要是我只用键盘可能只能输出1kb，太可笑。所以我一直在思考，如何能够提高记录的效率，最近的AIGC让我看到了可能，在Copilot的辅助下我能输出2kb了!
-		</p>
-		<p>最近也一直在看一些关于大脑的书，文章，发现一些有趣的机制，比如说，大脑的记忆机制，感觉器官收集外部信息，并将其编码成神经电信号。海马体暂存和整合信息。在休息和睡眠时，海马体会将信息传递给皮层进行长期存储。在需要的时候，通过回忆、提示或联想的方式，又将之前编码和存储的信息提取和重现记忆。不过这些信息会⌈失真⌋，目前我想克服这部分的问题。总的来说就是为了追求更高的科学，我想给我的脑做一个延展，用来加速进化和弥补缺陷。
-		</p>
-		<p>接着脑继续，网络也人类集体的大脑的延伸，我憧憬未来科技或人工智能的假设，我认为这样的动作是在参与贡献，我希望人类巨灵能够更早实现，当然它必须是符合伦理可持续的，像EVA里的⌈人类补完计划就显得太迫切了，不太行。还有现在我给这里命名⌈Mindnet⌋
-		</p>
-		<br>
-		<br>
-		<p>to be continued...</p>
-	</main>
-
-	<script src="./js/text.js"></script>
-	<script>
-
-		//hello world
-		let hello = document.getElementById('hello');
-		// 打字动效
-		let typewriterDom = document.getElementById('typewriter');
-
-		// 停止动画开关
-		let isStopBreath = false;
-
-
-
-		// 自定义创建文本节点的函数
-		const customNodeCreator = function (character) {
-			return document.createTextNode(character);
-		}
-
-		// 创建Typewriter实例
-		let typewriter = new Typewriter(typewriterDom, {
-			delay: 0,
-			deleteSpeed: 0,
-			onCreateTextNode: customNodeCreator,
-		});
-
-		//typewriter动画
-		const typewriterAnimation = (bodyBackgroundColor, textShadowColor, newCircleBackgroundColor) => {
-			typewriter
-				// .callFunction隐藏元素
-				.callFunction(() => {
-					typewriterDom.style.display = 'none';
-				})
-				.typeString('Hello World')
-				.pauseFor(407)
-				// 显示元素
-				.callFunction(() => {
-					//left: 51%;
-					typewriterDom.style.left = '50%';
-					typewriterDom.style.display = 'block';
-					typewriterDom.position = 'absolute';
-					// 文字左对齐
-					typewriterDom.style.textAlign = 'left';
-				})
-				.pauseFor(907)
-				.deleteChars(1)
-				.pauseFor(507)
-				.deleteChars(1)
-				.pauseFor(52)
-				.deleteChars(1)
-				.pauseFor(51)
-				.deleteChars(1)
-				.pauseFor(52)
-				.deleteChars(1)
-				.pauseFor(51)
-				.deleteChars(1)
-				.pauseFor(58)
-				.deleteChars(1)
-				.pauseFor(31)
-				.deleteChars(1)
-				.pauseFor(30)
-				.deleteChars(1)
-				.pauseFor(31)
-				.deleteChars(1)
-				.pauseFor(30)
-				.deleteChars(1)
-				.pauseFor(900)
-				//Welcome
-				.typeString("w")
-				.pauseFor(392)
-				.deleteChars(1)
-				.pauseFor(424)
-				.typeString("W")
-				.pauseFor(241)
-				.typeString("e")
-				.pauseFor(174)
-				.typeString("l")
-				.pauseFor(222)
-				.typeString("o")
-				.pauseFor(234)
-				.typeString("c")
-				.pauseFor(480)
-				.deleteChars(1)
-				.pauseFor(152)
-				.deleteChars(1)
-				.pauseFor(296)
-				.typeString("c")
-				.pauseFor(144)
-				.typeString("o")
-				.pauseFor(124)
-				.typeString("m")
-				.pauseFor(96)
-				.typeString("e")
-				.pauseFor(596)
-				.typeString("<br />")
-				.pauseFor(2096)
-				//开源布道
-				.typeString("<i>w</i>")
-				.pauseFor(126)
-				.typeString("<i>o</i>")
-				.pauseFor(361)
-				.deleteChars(2)
-				.typeString("我")
-				.pauseFor(307)
-				.deleteChars(1)
-				.pauseFor(410)
-				.typeString("<mark>c</mark>")
-				.pauseFor(118)
-				.typeString("<mark>a</mark>")
-				.pauseFor(118)
-				.typeString("<mark>t</mark>")
-				.pauseFor(617)
-				.typeString("<i>s</i>")
-				.pauseFor(168)
-				.typeString("<i>a</i>")
-				.pauseFor(231)
-				.typeString("<i>n</i>")
-				.pauseFor(404)
-				.deleteChars(3)
-				.typeString("<mark>彡</mark> ")
-				.pauseFor(832)
-				.typeString("<br />")
-				.typeString("<i>u</i>")
-				.pauseFor(221)
-				.typeString("<i>i</i>")
-				.pauseFor(386)
-				.deleteChars(1)
-				.pauseFor(144)
-				.deleteChars(1)
-				.pauseFor(346)
-				.typeString("<i>j</i>")
-				.pauseFor(192)
-				.typeString("<i>i</i>")
-				.pauseFor(231)
-				.typeString("<i>h</i>")
-				.pauseFor(248)
-				.typeString("<i>o</i>")
-				.pauseFor(208)
-				.typeString("<i>u</i>")
-				.pauseFor(436)
-				.deleteChars(5)
-				.typeString("今后")
-				.pauseFor(136)
-				.typeString("<i>z</i>")
-				.pauseFor(174)
-				.typeString("<i>u</i>")
-				.pauseFor(192)
-				.typeString("<i>n</i>")
-				.pauseFor(105)
-				.typeString("<i>b</i>")
-				.pauseFor(168)
-				.typeString("<i>z</i>")
-				.typeString("<i>a</i>")
-				.pauseFor(80)
-				.typeString("<i>i</i>")
-				.pauseFor(292)
-				.typeString("<i>z</i>")
-				.pauseFor(144)
-				.typeString("<i>l</i>")
-				.pauseFor(192)
-				.deleteChars(9)
-				.typeString("<br />")
-				.typeString("准备在<strong style='font-size: 2.6rem;'>这里</strong>")
-				.pauseFor(1500)
-				.deleteChars(25)
-				.pauseFor(100)
-				.typeString(`<strong id='openSource' class='domBubble' style='background-color: ${bodyBackgroundColor};font-size: 2rem;'>开源</strong>`)
-				.pauseFor(2000)
-				.typeString(`<strong style='opacity: 0; font-style: italic'>⚪</strong>`)
-				.pauseFor(1000)
-				.typeString(`<strong id='preach' class='domBubble' style='background-color: ${bodyBackgroundColor};font-size: 2rem;'>布道</strong>`)
-				.pauseFor(1000)
-				.callFunction(() => {
-
-					// 移除光标
-					document.querySelector('.Typewriter__cursor').remove();
-
-					//开源
-					domBubble('#openSource', bodyBackgroundColor, `rgb(${textShadowColor}, ${textShadowColor}, ${textShadowColor})`, '将现有的资源整理对公众开放允许任何人查看、复制、分发、修改或使用。');
-
-					//布道
-					domBubble('#preach', bodyBackgroundColor, `rgb(${textShadowColor}, ${textShadowColor}, ${textShadowColor})`, '将现有的思考整理对公众开放欢迎任何人讨论、反馈、审查、编辑或传播。');
-
-					//背景颜色控制器				
-					const domBubbleControl = document.getElementById('domBubbleControl');
-					// 获取class为domBubble的元素
-					domBubbleControl.style.display = 'block';
-					domBubbleControl.style.opacity = 0;
-					domBubbleControl.style.userSelect = 'none';
-
-
-
-					setTimeout(function () {
-						domBubbleControl.style.opacity = 1;
-						domBubbleControl.style.animation = 'domBubbleControlExpand 1s ease forwards';
-					}, 100);
-
-					// 让domBubbleControl不能被文本选中
-
-
-
-					let startX = parseInt(window.getComputedStyle(domBubbleControl).left);
-					let startY = parseInt(window.getComputedStyle(domBubbleControl).top);
-
-					let mouseX = 0;
-					let mouseY = 0;
-
-					const mousemoveHandler = (e) => {
-						const deltaX = e.clientX - mouseX;
-						const deltaY = e.clientY - mouseY;
-						domBubbleControl.style.top = (startY + deltaY) + 'px';
-
-
-						//改变domBubble颜色
-						bodyBackgroundColor = `rgb(${deltaY / 2 + 125}, ${deltaY / 2 + 125}, ${deltaY / 2 + 125})`
-						console.log(bodyBackgroundColor);
-						const domBubble = document.getElementsByClassName('domBubble')
-						for (let i = 0; i < domBubble.length; i++) {
-							domBubble[i].style.backgroundColor = bodyBackgroundColor;
-						}
-
-
-					};
-
-					const mousedownHandler = (e) => {
-						mouseX = e.clientX;
-						mouseY = e.clientY;
-
-						document.addEventListener('mousemove', mousemoveHandler);
-						document.addEventListener('mouseup', () => {
-							document.removeEventListener('mousemove', mousemoveHandler);
-							domBubbleControl.style.top = startY + 'px';
-							domBubbleControl.style.left = startX + 'px';
-						}, { once: true });
-					};
-
-					const touchmoveHandler = (e) => {
-						const deltaX = e.touches[0].clientX - touchX;
-						const deltaY = e.touches[0].clientY - touchY;
-						domBubbleControl.style.top = (startY + deltaY) + 'px';
-
-
-						//改变domBubble颜色
-						bodyBackgroundColor = `rgb(${deltaY / 2 + 125}, ${deltaY / 2 + 125}, ${deltaY / 2 + 125})`
-						console.log(bodyBackgroundColor);
-						const domBubble = document.getElementsByClassName('domBubble')
-						for (let i = 0; i < domBubble.length; i++) {
-							domBubble[i].style.backgroundColor = bodyBackgroundColor;
-						}
-					};
-
-					const touchstartHandler = (e) => {
-						touchX = e.touches[0].clientX;
-						touchY = e.touches[0].clientY;
-
-						document.addEventListener('touchmove', touchmoveHandler);
-						document.addEventListener('touchend', () => {
-							document.removeEventListener('touchmove', touchmoveHandler);
-							domBubbleControl.style.top = startY + 'px';
-							domBubbleControl.style.left = startX + 'px';
-						}, { once: true });
-					};
-
-					domBubbleControl.addEventListener('mousedown', mousedownHandler);
-					domBubbleControl.addEventListener('touchstart', touchstartHandler);
-
-
-
-					// 延迟5秒后出现的文字 ‘进入’下一行‘退出’，点击后开始闪烁
-					setTimeout(function () {
-
-						const title = document.getElementById('title');
-						let textColor = `rgb(${textShadowColor}, ${textShadowColor}, ${textShadowColor})`
-						title.style.color = `rgb(${textShadowColor}, ${textShadowColor}, ${textShadowColor})`;
-						title.style.display = 'block';
-						title.classList.add("blinking");
-
-
-						// 点击进入
-						title.addEventListener('click', function () {
-							// 点击后向上移动
-							const typewriter = document.getElementById('typewriter');
-							const domBubbleControl = document.getElementById('domBubbleControl');
-
-							title.style.animation = 'titleMoveUp 1s ease forwards';
-							typewriter.style.animation = 'domBubbleMoveUp 1s ease forwards';
-							domBubbleControl.style.animation = 'domBubbleMoveUp 1s ease forwards';
-
-							// typewriter的zIndex设置为10001添加backgroundColor
-							// domBubbleControlzIndex设置为10002
-							typewriter.style.zIndex = '10001';
-							domBubbleControl.style.zIndex = '10002';
-							typewriter.style.backgroundColor = bodyBackgroundColor;
-
-
-							// 开始内容
-							contentBox('openSourceHTML', true, textColor, newCircleBackgroundColor, bodyBackgroundColor);
-							contentBox('preachHTML', false, textColor, newCircleBackgroundColor, bodyBackgroundColor);
-
-							// 添加domBubble
-							domBubbleList(bodyBackgroundColor, textColor)
-
-							//点击#openSource，openSourceHTML显示，preachHTML隐藏，点击#preach，preachHTML显示，openSourceHTML隐藏
-							let openSourceBtn = document.getElementById("openSource");
-							let preachBtn = document.getElementById("preach");
-							let openSourceHTML = document.getElementById("openSourceHTML");
-							let preachHTML = document.getElementById("preachHTML");
-
-							openSourceBtn.addEventListener("click", function () {
-								openSourceHTML.style.display = "block";
-								preachHTML.style.display = "none";
-							});
-
-							preachBtn.addEventListener("click", function () {
-								openSourceHTML.style.display = "none";
-								preachHTML.style.display = "block";
-							});
-						});
-					}, 10000);
-
-				})
-				.start();
-
-		}
-		function domBubbleList(bodyBackgroundColor, textColor) {
-
-			domBubble('#GitHub', bodyBackgroundColor, textColor, 'GitHub 是一个非常受欢迎的代码托管平台，它提供了版本控制和协作功能，让开发者可以在一个平台上进行项目管理和协作。上边的项目可以被其他用户浏览、复制和修改，这也促进了开源软件的发展和共享。');
-			domBubble('#repository', bodyBackgroundColor, textColor, '⌈存储库⌋是指存储和管理代码、文档、图片等文件的地方。注意与"library"⌈库⌋区分。');
-			domBubble('#index', bodyBackgroundColor, textColor, '⌈索引⌋在Web开发中，通常会将网站的主页命名为index文件。Web服务器,如果请求的是一个目录,则默认返回该目录下的index文件作为响应。');
-			domBubble('#html', bodyBackgroundColor, textColor, '全称为Hyper Text Markup Language ⌈超文本标记语言⌋,Web页面的标准语言之一,可以添加文本、图片、视频、音频等内容并定义网页的布局、样式和交互行为。');
-			domBubble('#部署', bodyBackgroundColor, textColor, '在计算机领域中，部署（Deploy）通常指将软件、应用程序、服务或其他计算资源发布到目标环境，并供其他人查看和使用。');
-
-		}
-
-		function contentBox(contentBoxId, isShow, textColor, bodyBackgroundColor, domBubbleBackgroundColor) {
-			console.log('contentBox');
-
-			// 内容
-			const contentBox = document.getElementById(contentBoxId);
-			contentBox.style.display = isShow ? 'block' : 'none';
-			contentBox.style.opacity = 0;
-			contentBox.style.position = 'absolute';
-			contentBox.style.color = textColor;
-			contentBox.style.zIndex = '10000';
-			contentBox.style.backgroundColor = bodyBackgroundColor;
-			// 添加毛玻璃效果
-			contentBox.style.backdropFilter = 'blur(3px)';
-			contentBox.style.top = '6rem';
-			contentBox.style.animation = 'contentBoxExpand 1s ease forwards';
-			setTimeout(function () {
-				contentBox.style.opacity = 1;
-			}, 1000);
-
-
-			// 让contentBox可以上下滑动
-			contentBox.addEventListener('touchstart', function (e) {
-				// 记录开始的位置
-				startY = e.touches[0].clientY;
-			});
-			contentBox.addEventListener('touchmove', function (e) {
-				// 记录移动的位置
-				moveY = e.touches[0].clientY;
-				// 计算移动的距离
-				distanceY = moveY - startY;
-				// 移动盒子
-				contentBox.style.top = contentBox.offsetTop + distanceY + 'px';
-				// 重置起始位置
-				startY = moveY;
-			});
-
-
-			// 监听鼠标滚轮事件
-			contentBox.addEventListener('mousewheel', function (e) {
-				// 记录移动的位置
-				moveY = e.wheelDelta;
-				// 计算移动的距离
-				distanceY = moveY;
-				// 移动盒子
-				contentBox.style.top = contentBox.offsetTop + distanceY + 'px';
-			});
-
-			const domBubbleColor = document.getElementsByClassName('domBubble')
-			for (let i = 0; i < domBubbleColor.length; i++) {
-				domBubbleColor[i].style.backgroundColor = domBubbleBackgroundColor;
-			}
-
-			//彩蛋
-			const easterEgg = document.getElementById('easterEgg');
-
-		}
-
-
-		// 注释方法
-		/**
-		 * Sets the background color and text content of the given element, and shows it on mouseup event
-		 *
-		 * @param {HTMLElement} element - The element to set the background color and text content
-		 * @param {string} textContent - The desired text content
-		 * @param {string} backgroundColor - The desired background color
-		 * 
-		// Example usage
-		const bubble = document.createElement('div');
-		document.body.appendChild(bubble);
-		setElementStyle(bubble, "#FFA07A", "将现有的资源整理对公众开放允许任何人查看、复制、分发、修改或使用。");
-		 * 
-		 * 
-		 */
-		function domBubble(domId, backgroundColor, textColor, textContent) {
-			// 获取可的元素
-			let dom = document.querySelector(domId);
-			// 创建气泡
-			let bubble = document.createElement('div');
-			document.body.appendChild(bubble);
-			bubble.style.backgroundColor = backgroundColor;
-			bubble.style.color = textColor;
-			bubble.style.fontSize = '1.2rem';
-			bubble.style.position = 'fixed';
-			bubble.style.zIndex = '99999';
-			bubble.style.padding = '0.5rem';
-			bubble.style.borderRadius = '0.5rem';
-			bubble.textContent = textContent;
-			bubble.style.display = 'none';
-			bubble.classList.add('domBubble');
-
-			// 鼠标移入
-			dom.addEventListener('mouseup', function (event) {
-				bubble.style.top = `${event.clientY + 30}px`;
-				bubble.style.left = `${event.clientX}px`;
-				bubble.style.display = 'block';
-
-				dom.addEventListener('mouseout', function () {
-					bubble.style.display = 'none';
-				});
-			});
-			// 点击到dom以外的区域时，bubble.style.display = 'none';
-			document.addEventListener('click', function (event) {
-				if (!dom.contains(event.target)) {
-					bubble.style.display = 'none';
-				}
-			})
-		}
-
-
-
-
-
-		// 点击circle停止动画
-		function stopBreath(element) {
-			if (isStopBreath) return;
-			isStopBreath = true;
-
-			//circle的动画停止
-			element.classList.add('stopped');
-
-			//body的动画停止
-			document.body.classList.add('stopped');
-
-			//获取当前circle大小与颜色，之后circle开始放到直到占满屏幕
-			let circle = document.querySelector('.circle');
-
-			// 拷贝另一个圆添加到body中
-			let newCircle = circle.cloneNode(true);
-			document.body.appendChild(newCircle);
-
-			// newCircle的颜色与大小与circle当前一致
-			let color = window.getComputedStyle(circle).getPropertyValue('background-color');
-			let bodyBackgroundColor = window.getComputedStyle(document.body).getPropertyValue('background-color');
-
-			newCircle.style.backgroundColor = color;
-			// newCircle的大小与circle当前一致
-			let rect = circle.getBoundingClientRect();
-			newCircle.style.width = rect.width + 'px';
-			newCircle.style.height = rect.height + 'px';
-
-			// 隐藏circle
-			circle.style.display = 'none';
-
-			// circle开始执行新动画不断扩大占满屏幕
-			newCircle.style.animation = 'expand 5s ease forwards';
-			// position:fixed
-			newCircle.style.position = 'fixed';
-
-			// 替换节点
-			circle.parentNode.replaceChild(newCircle, circle);
-
-			// newCircle超出部分自动隐藏
-			newCircle.style.overflow = 'hidden';
-
-			// 等3秒
-			setTimeout(function () {
-
-				// 屏幕中央 渐入 hello world 从模糊到清晰
-				helloWorld(newCircle.style.backgroundColor, bodyBackgroundColor);
-			}, 1000);
-
-		}
-
-
-		// 屏幕中央 渐入 hello world 从模糊到清晰
-		function helloWorld(newCircleBackgroundColor, bodyBackgroundColor) {
-			// //根据传入的颜色进一步操作
-			const rgbaValues = newCircleBackgroundColor.substring(newCircleBackgroundColor.indexOf('(') + 1, newCircleBackgroundColor.lastIndexOf(')')).split(/,\s*/);
-			const alpha = parseFloat(rgbaValues[3]);
-			const colorR = parseFloat(rgbaValues[0]);
-
-			// 判断text是黑色还是白色
-			const textShadowColor = colorR === 0 ? 255 : 0;
-
-
-			hello.innerHTML = "Hello World";
-			hello.style.animation = "fadeIn 8s ease forwards";
-
-			// 创建style标签
-			const keyframes = `@keyframes fadeIn {
-									0% {
-										opacity: 0.5;
-										font-size: 0rem;
-										text-shadow: 0 0 300px rgba(${textShadowColor}, ${textShadowColor}, ${textShadowColor}, 0.5);
-									}
-
-									30% {
-										opacity: 1;
-										font-size: 1rem;
-										text-shadow: 0 0 20px rgba(${textShadowColor}, ${textShadowColor}, ${textShadowColor},1);
-									}
-									60% {
-										opacity: 0.5;
-										font-size: 1.5rem;
-										text-shadow: 0 0 100px rgba(${textShadowColor}, ${textShadowColor}, ${textShadowColor}, 0.5);
-									}
-									100% {
-										opacity: 1;
-										font-size: 2rem;
-										text-shadow: 0 0 0px rgba(${textShadowColor}, ${textShadowColor}, ${textShadowColor}, 1);
-									}
-								}`;
-
-			const styleSheet = document.createElement("style");
-			styleSheet.innerHTML = keyframes;
-			document.head.appendChild(styleSheet);
-
-
-			// 等待9秒后
-			setTimeout(function () {
-				console.log("hello world");
-
-
-
-				// 显示typewriter
-				// typewriter的颜色为textShadowColor
-				typewriterDom.style.color = `rgb(${textShadowColor}, ${textShadowColor}, ${textShadowColor})`;
-				typewriterDom.style.display = 'block';
-
-				// 等待1s隐藏hello world
-				setTimeout(function () {
-					hello.style.display = 'none';
-				}, 500);
-
-				// typewriter动画start
-				typewriterAnimation(bodyBackgroundColor, textShadowColor, newCircleBackgroundColor);
-
-
-			}, 9000);
-
-		}
-
-
-
-
-
-	</script>
-
-
-	<style>
-		#hello {
-			position: absolute;
-			top: 50%;
-			left: 50%;
-			transform: translate(-50%, -50%);
-			font-size: 2rem;
-			font-family: Arial, sans-serif;
-			color: transparent;
-			text-shadow: 0 0 50px rgba(255, 255, 255, 0.5);
-			opacity: 1;
-			z-index: 10;
-		}
-
-		#typewriter {
-			position: absolute;
-			top: 50%;
-			left: 50%;
-			transform: translate(-50%, -50%);
-			font-size: 2rem;
-			font-family: Arial, sans-serif;
-			color: transparent;
-			opacity: 1;
-			z-index: 10;
-		}
-
-		@keyframes titleMoveUp {
-			100% {
-				top: 9%;
-			}
-		}
-
-		@keyframes domBubbleMoveUp {
-			100% {
-				top: 3%;
-			}
-		}
-	</style>
+    <script src="./resume/kevin_files/jquery-3.3.1.min.js"></script>
+    <script src="./resume/kevin_files/jquery-ui.min.js"></script>
+    <script src="./resume/kevin_files/detect-browser-device.js"></script><noscript>
+        <div id=javascript-banner-container>
+            <div id=javascript-banner>
+                <div id=javascript-banner-left></div>
+                <div id=javascript-banner-middle>
+                    <div id=javascript-banner-text-a>请打开你的</div>
+                    <div id=javascript-banner-text-b>JAVASCRIPT</div>
+                </div>
+                <div id=javascript-banner-right></div>
+            </div>
+        </div>
+    </noscript>
+    <!-- 创建两个红色固定三角形按钮 -->
+    <div class="super_copy_btns_div1">
+        <div id="leftButton">
+            <span>👈</span>
+        </div>
+        <div id="rightButton">
+            <span>👉</span>
+        </div>
+    </div>
+
+    <div
+        class=""
+        id="content"
+    >
+        <div
+            class="displaynone"
+            id="preloader"
+            style="bottom: 100%;"
+        >
+            <script src="./resume/kevin_files/preloader-transparent-or-displaynone.js"></script>
+            <div id="preloader-banner-container">
+                <div id="preloader-banner">
+                    <div id="preloader-banner-left"></div>
+                    <div id="preloader-banner-middle">
+                        <div id="preloader-banner-text-a">LOADING</div>
+                        <div
+                            class="preloader-dots-static"
+                            id="preloader-dots"
+                        ></div>
+                    </div>
+                    <div id="preloader-banner-right"></div>
+                </div>
+            </div>
+        </div>
+        <script src="./resume/kevin_files/preloader.js"></script>
+        <div
+            id="page"
+            style="height: 28548px;"
+        ></div>
+        <div
+            class=""
+            id="container"
+        >
+            <script src="./resume/kevin_files/container-transparent-or-displaynone.js"></script>
+            <div
+                class="layer-vertical"
+                id="layer-vertical-1"
+                style="left: 3491px; bottom: 0px;"
+            >
+                <div
+                    class="cloud"
+                    id="cloud-5"
+                ></div>
+                <div
+                    class="cloud"
+                    id="cloud-6"
+                ></div>
+                <div
+                    class="cloud"
+                    id="cloud-7"
+                ></div>
+                <div
+                    class="cloud"
+                    id="cloud-8"
+                ></div>
+                <div
+                    class="cloud"
+                    id="cloud-9"
+                ></div>
+            </div>
+            <div
+                class="layer-vertical"
+                id="layer-vertical-2"
+                style="left: 11491px; bottom: 0px;"
+            >
+                <div id="ground-and-grass-container-2">
+                    <div class="ground"></div>
+                    <div class="grass"></div>
+                    <div
+                        class="waterfall"
+                        id="waterfall-1"
+                    ></div>
+                    <div
+                        class="waterfall"
+                        id="waterfall-2"
+                        style="opacity: 1;"
+                    ></div>
+                </div>
+            </div>
+            <div
+                class="layer-horizontal"
+                id="layer-horizontal-1"
+                style="top: 10000px; left: 0px;"
+            >
+                <div
+                    class="cloud"
+                    id="cloud-1"
+                ></div>
+                <div
+                    class="cloud"
+                    id="cloud-2"
+                ></div>
+                <div
+                    class="cloud"
+                    id="cloud-3"
+                ></div>
+                <div
+                    class="cloud"
+                    id="cloud-4"
+                ></div>
+                <div
+                    class="sea"
+                    id="sea-layer-horizontal-1"
+                >
+                    <div class="sea-seal"></div>
+                </div>
+                <div
+                    class="coral-big"
+                    id="coral-big-1"
+                    style="bottom: -70%;"
+                ></div>
+                <div
+                    class="coral-big"
+                    id="coral-big-2"
+                    style="bottom: -70%;"
+                ></div>
+            </div>
+            <div
+                class="layer-horizontal"
+                id="layer-horizontal-2"
+                style="top: 7000px; left: 0px;"
+            >
+                <div
+                    class="mountain"
+                    id="mountain-1"
+                ></div>
+                <div
+                    class="mountain"
+                    id="mountain-2"
+                ></div>
+                <div
+                    class="coral-a"
+                    id="coral-1"
+                ></div>
+                <div
+                    class="coral-b"
+                    id="coral-2"
+                ></div>
+                <div
+                    class="coral-a"
+                    id="coral-3"
+                ></div>
+                <div
+                    class="crane"
+                    id="crane-1"
+                ></div>
+                <div id="hangar">
+                    <div id="hangar-door"></div>
+                    <div id="hangar-window"></div>
+                    <div id="hangar-roof"></div>
+                </div>
+                <div
+                    class="crane"
+                    id="crane-2"
+                ></div>
+            </div>
+            <div
+                class="layer-horizontal"
+                id="layer-horizontal-3"
+                style="top: 2000px; left: 0px;"
+            >
+                <div id="plants-container">
+                    <div
+                        class="plant-text"
+                        id="plant-text-1"
+                    >精通</div>
+                    <div
+                        class="plant-text"
+                        id="plant-text-2"
+                    >熟悉</div>
+                    <div
+                        class="plant-text"
+                        id="plant-text-3"
+                    >入门</div>
+                    <div
+                        class="plant-text"
+                        id="plant-text-4"
+                    >了解</div>
+                    <div
+                        class="plant-text"
+                        id="plant-text-5"
+                    >小白</div>
+                    <div
+                        class="plant-line"
+                        id="plant-line-1"
+                    ></div>
+                    <div
+                        class="plant-line"
+                        id="plant-line-2"
+                    ></div>
+                    <div
+                        class="plant-line"
+                        id="plant-line-3"
+                    ></div>
+                    <div
+                        class="plant-line"
+                        id="plant-line-4"
+                    ></div>
+                    <div
+                        class="plant-line"
+                        id="plant-line-5"
+                    ></div>
+                    <div
+                        class="plant"
+                        id="plant-1"
+                        style="top: 100%;"
+                    >
+                        <div class="plant-stalk"></div>
+                        <div class="plant-head-leaves"></div>
+                    </div>
+                    <div
+                        class="plant"
+                        id="plant-2"
+                        style="top: 100%;"
+                    >
+                        <div class="plant-stalk"></div>
+                        <div class="plant-head-leaves"></div>
+                    </div>
+                    <div
+                        class="plant"
+                        id="plant-3"
+                        style="top: 100%;"
+                    >
+                        <div class="plant-stalk"></div>
+                        <div class="plant-head-leaves"></div>
+                    </div>
+                    <div
+                        class="plant"
+                        id="plant-4"
+                        style="top: 100%;"
+                    >
+                        <div class="plant-stalk"></div>
+                        <div class="plant-head-leaves"></div>
+                    </div>
+                    <div id="plant-ribbon-container">
+                        <div
+                            class="plant-ribbon"
+                            id="plant-ribbon-1"
+                        >
+                            <div class="plant-ribbon-left"></div>
+                            <div class="plant-ribbon-middle">编码能力</div>
+                            <div class="plant-ribbon-right"></div>
+                        </div>
+                        <div
+                            class="plant-ribbon"
+                            id="plant-ribbon-2"
+                        >
+                            <div class="plant-ribbon-left"></div>
+                            <div class="plant-ribbon-middle">设计能力</div>
+                            <div class="plant-ribbon-right"></div>
+                        </div>
+                        <div
+                            class="plant-ribbon"
+                            id="plant-ribbon-3"
+                        >
+                            <div class="plant-ribbon-left"></div>
+                            <div class="plant-ribbon-middle">团队能力</div>
+                            <div class="plant-ribbon-right"></div>
+                        </div>
+                        <div
+                            class="plant-ribbon"
+                            id="plant-ribbon-4"
+                        >
+                            <div class="plant-ribbon-left"></div>
+                            <div class="plant-ribbon-middle">解决问题</div>
+                            <div class="plant-ribbon-right"></div>
+                        </div>
+                    </div>
+                    <div class="ribbon-container">
+                        <div class="ribbon-relative">
+                            <div class="ribbon-left"></div>
+                            <div class="ribbon-middle">复合型开发人员</div>
+                            <div class="ribbon-right"></div>
+                        </div>
+                    </div>
+                </div>
+                <div
+                    class="elevation"
+                    id="elevation-1"
+                >
+                    <div class="ground"></div>
+                    <div class="grass"></div>
+                </div>
+                <div
+                    class="tree-bright-a"
+                    id="tree-9"
+                ></div>
+                <div
+                    class="tree-dark-c"
+                    id="tree-10"
+                ></div>
+                <div id="title-about"></div>
+                <div
+                    class="tree-dark-a"
+                    id="tree-7"
+                ></div>
+                <div
+                    class="tree-bright-a"
+                    id="tree-8"
+                ></div>
+                <div
+                    class="gate"
+                    id="gate-1"
+                >
+                    <div
+                        class="gate-text"
+                        id="gate-text-1"
+                    >LEVEL 1</div>
+                </div>
+                <div
+                    class="gate"
+                    id="gate-2"
+                >
+                    <div
+                        class="gate-text"
+                        id="gate-text-2"
+                    >LEVEL 2</div>
+                </div>
+                <div id="nba-container">
+                    <div
+                        class="tree-bright-b"
+                        id="tree-20"
+                    ></div>
+                    <div
+                        class="tree-dark-d"
+                        id="tree-21"
+                    ></div>
+                    <div
+                        class="tree-bright-b"
+                        id="tree-22"
+                    ></div>
+                    <div
+                        class="tree-dark-b"
+                        id="tree-23"
+                    ></div>
+                    <div
+                        class="tree-bright-e"
+                        id="tree-24"
+                    ></div>
+                    <div
+                        class="tree-dark-b"
+                        id="tree-25"
+                    ></div>
+                    <div id="nba-rim-container">
+                        <div id="nba-rim"></div>
+                    </div>
+                    <div
+                        class="nba-board-blue"
+                        id="nba-board-1"
+                        style="bottom: 0px;"
+                    >
+                        <div class="nba-text-container">
+                            <div class="nba-text">A</div>
+                        </div>
+                    </div>
+                    <div
+                        class="nba-board-blue"
+                        id="nba-board-2"
+                        style="bottom: 0px;"
+                    >
+                        <div class="nba-text-container">
+                            <div class="nba-text">C</div>
+                        </div>
+                    </div>
+                    <div
+                        class="nba-board-blue"
+                        id="nba-board-3"
+                        style="bottom: 0px;"
+                    >
+                        <div class="nba-text-container">
+                            <div class="nba-text">G</div>
+                        </div>
+                    </div>
+                    <div
+                        class="nba-board-red"
+                        id="nba-board-4"
+                        style="bottom: 0px;"
+                    >
+                        <div class="nba-text-container">
+                            <div class="nba-text">F</div>
+                        </div>
+                    </div>
+                    <div
+                        class="nba-board-red"
+                        id="nba-board-5"
+                        style="bottom: 0px;"
+                    >
+                        <div class="nba-text-container">
+                            <div class="nba-text">A</div>
+                        </div>
+                    </div>
+                    <div
+                        class="nba-board-red"
+                        id="nba-board-6"
+                        style="bottom: 0px;"
+                    >
+                        <div class="nba-text-container">
+                            <div class="nba-text">N</div>
+                        </div>
+                    </div>
+                    <div
+                        id="nba-player-container"
+                        style="left: 1400px; bottom: 0px;"
+                    >
+                        <div id="nba-player">
+                            <div id="nba-player-frame"></div>
+                            <div id="nba-player-eyes"></div>
+                        </div>
+                    </div>
+                    <div
+                        id="nba-ball"
+                        style="left: 415px; bottom: 250px; opacity: 0;"
+                    ></div>
+                    <div class="ribbon-container">
+                        <div class="ribbon-relative">
+                            <div class="ribbon-left"></div>
+                            <div class="ribbon-middle">有一点爱好</div>
+                            <div class="ribbon-right"></div>
+                        </div>
+                    </div>
+                </div>
+                <div id="buildings-container">
+                    <div
+                        class="tree-bright-b"
+                        id="tree-11"
+                    ></div>
+                    <div
+                        class="tree-dark-b"
+                        id="tree-12"
+                    ></div>
+                    <div
+                        class="tree-bright-b"
+                        id="tree-13"
+                    ></div>
+                    <div
+                        class="tree-dark-b"
+                        id="tree-14"
+                    ></div>
+                    <div
+                        class="tree-bright-b"
+                        id="tree-15"
+                    ></div>
+                    <div
+                        class="tree-dark-b"
+                        id="tree-16"
+                    ></div>
+                    <div
+                        class="tree-bright-b"
+                        id="tree-17"
+                    ></div>
+                    <div
+                        class="tree-dark-b"
+                        id="tree-18"
+                    ></div>
+                    <div
+                        class="tree-bright-b"
+                        id="tree-19"
+                    ></div>
+                    <div
+                        class="building"
+                        id="building-1"
+                        style="left: 795px;"
+                    >
+                        <div class="building-enemy-face-a">
+                            <div class="building-enemy-face-a-eyes"></div>
+                        </div>
+                        <div
+                            class="building-leg-container-a"
+                            id="building-leg-container-1"
+                        >
+                            <div
+                                class="building-leg-frame-a"
+                                id="building-1-leg-frame"
+                            ></div>
+                        </div>
+                    </div>
+                    <div
+                        class="building"
+                        id="building-2"
+                        style="left: 1100px;"
+                    >
+                        <div class="building-enemy-face-b">
+                            <div class="building-enemy-face-b-eyes"></div>
+                        </div>
+                        <div
+                            class="building-leg-container-b"
+                            id="building-leg-container-2"
+                        >
+                            <div
+                                class="building-leg-frame-b"
+                                id="building-2-leg-frame"
+                            ></div>
+                        </div>
+                    </div>
+                    <div
+                        class="building"
+                        id="building-3"
+                        style="left: 1505px;"
+                    >
+                        <div class="building-enemy-face-a">
+                            <div class="building-enemy-face-a-eyes"></div>
+                        </div>
+                        <div
+                            class="building-leg-container-a"
+                            id="building-leg-container-3"
+                        >
+                            <div
+                                class="building-leg-frame-a"
+                                id="building-3-leg-frame"
+                            ></div>
+                        </div>
+                    </div>
+                    <div class="ribbon-container">
+                        <div class="ribbon-relative">
+                            <div class="ribbon-left"></div>
+                            <div class="ribbon-middle">现在in成都</div>
+                            <div class="ribbon-right"></div>
+                        </div>
+                    </div>
+                </div>
+                <div
+                    class="elevation"
+                    id="elevation-2"
+                >
+                    <div class="ground"></div>
+                    <div class="grass"></div>
+                </div>
+                <div id="ground-and-grass-container-1">
+                    <div class="ground"></div>
+                    <div class="grass"></div>
+                </div>
+                <div
+                    id="splash-container"
+                    style="left: -32px;"
+                >
+                    <div
+                        class="scroll-or-swipe-text-container"
+                        id="scroll-or-swipe-text-container-1"
+                        style="opacity: 0;"
+                    >滑动鼠标 或者 点击按钮 移动</div>
+                    <div
+                        class="scroll-or-swipe-text-container"
+                        id="scroll-or-swipe-text-container-2"
+                        style="opacity: 0;"
+                    >从右向左滑动</div>
+                    <div
+                        class="tree-bright-d"
+                        id="tree-5"
+                    ></div>
+                    <div
+                        class="tree-dark-b"
+                        id="tree-6"
+                    ></div>
+                    <div id="title-robby"></div>
+                    <div id="title-leonardi"></div>
+                    <div
+                        class="tree-dark-c"
+                        id="tree-1"
+                    ></div>
+                    <div
+                        class="tree-bright-e"
+                        id="tree-2"
+                    ></div>
+                    <div
+                        class="tree-dark-b"
+                        id="tree-3"
+                    ></div>
+                    <div
+                        class="tree-dark-a"
+                        id="tree-4"
+                    ></div>
+                    <div class="ribbon-container">
+                        <div class="ribbon-relative">
+                            <div class="ribbon-left"></div>
+                            <div class="ribbon-middle">网页简历</div>
+                            <div class="ribbon-right"></div>
+                        </div>
+                    </div>
+                </div>
+                <div
+                    class="sea-wave"
+                    id="sea-wave-1"
+                ></div>
+                <div
+                    class="sea"
+                    id="sea-1"
+                >
+                    <div
+                        class="title-skills-class"
+                        id="title-skills"
+                        style="bottom: 0px;"
+                    ></div>
+                    <div
+                        class="algae-a"
+                        id="algae-1"
+                        style="bottom: 0px;"
+                    ></div>
+                    <div
+                        class="algae-b"
+                        id="algae-2"
+                        style="bottom: 0px;"
+                    ></div>
+                    <div
+                        class="algae-a"
+                        id="algae-3"
+                        style="bottom: 0px;"
+                    ></div>
+                    <div
+                        class="algae-b"
+                        id="algae-4"
+                        style="bottom: 0px;"
+                    ></div>
+                    <div
+                        class="algae-b"
+                        id="algae-5"
+                        style="bottom: 0px;"
+                    ></div>
+                    <div
+                        class="algae-a"
+                        id="algae-6"
+                        style="bottom: 0px;"
+                    ></div>
+                    <div
+                        class="algae-a"
+                        id="algae-7"
+                        style="bottom: 0px;"
+                    ></div>
+                    <div
+                        class="algae-b"
+                        id="algae-8"
+                        style="bottom: 0px;"
+                    ></div>
+                    <div id="skill-1-container">
+                        <div class="skill-measurement skill-measurement-1">
+                            <div class="skill-measurement-header">小白</div>
+                            <div class="skill-measurement-line"></div>
+                        </div>
+                        <div class="skill-measurement skill-measurement-2">
+                            <div class="skill-measurement-header">了解</div>
+                            <div class="skill-measurement-line"></div>
+                        </div>
+                        <div class="skill-measurement skill-measurement-3">
+                            <div class="skill-measurement-header">入门</div>
+                            <div class="skill-measurement-line"></div>
+                        </div>
+                        <div class="skill-measurement skill-measurement-4">
+                            <div class="skill-measurement-header">熟悉</div>
+                            <div class="skill-measurement-line"></div>
+                        </div>
+                        <div class="skill-measurement skill-measurement-5">
+                            <div class="skill-measurement-header">精通</div>
+                            <div class="skill-measurement-line"></div>
+                        </div>
+                        <div id="fish-text-container">
+                            <div
+                                class="sea-ribbon-container"
+                                id="fish-ribbon-container-1"
+                            >
+                                <div class="sea-ribbon-left"></div>
+                                <div class="sea-ribbon-middle">HTML</div>
+                                <div class="sea-ribbon-right"></div>
+                            </div>
+                            <div
+                                class="sea-ribbon-container"
+                                id="fish-ribbon-container-2"
+                            >
+                                <div class="sea-ribbon-left"></div>
+                                <div class="sea-ribbon-middle">CSS</div>
+                                <div class="sea-ribbon-right"></div>
+                            </div>
+                            <div
+                                class="sea-ribbon-container"
+                                id="fish-ribbon-container-3"
+                            >
+                                <div class="sea-ribbon-left"></div>
+                                <div class="sea-ribbon-middle">JavaScript</div>
+                                <div class="sea-ribbon-right"></div>
+                            </div>
+                            <div
+                                class="sea-ribbon-container"
+                                id="fish-ribbon-container-4"
+                            >
+                                <div class="sea-ribbon-left"></div>
+                                <div class="sea-ribbon-middle">Vue</div>
+                                <div class="sea-ribbon-right"></div>
+                            </div>
+                        </div>
+                        <div id="fishes-container">
+                            <div
+                                class="fish"
+                                style="left: 900px; top: 0px;"
+                            >
+                                <div class="fish-eyes"></div>
+                            </div>
+                            <div
+                                class="fish"
+                                style="left: 1050px; top: 0px;"
+                            >
+                                <div class="fish-eyes"></div>
+                            </div>
+                            <div
+                                class="fish"
+                                style="left: 1200px; top: 0px;"
+                            >
+                                <div class="fish-eyes"></div>
+                            </div>
+                            <div
+                                class="fish"
+                                style="left: 1350px; top: 0px;"
+                            >
+                                <div class="fish-eyes"></div>
+                            </div>
+                            <div
+                                class="fish"
+                                style="left: 1500px; top: 0px;"
+                            >
+                                <div class="fish-eyes"></div>
+                            </div>
+                            <div
+                                class="fish"
+                                style="left: 900px; top: 100px;"
+                            >
+                                <div class="fish-eyes"></div>
+                            </div>
+                            <div
+                                class="fish"
+                                style="left: 1050px; top: 100px;"
+                            >
+                                <div class="fish-eyes"></div>
+                            </div>
+                            <div
+                                class="fish"
+                                style="left: 1200px; top: 100px;"
+                            >
+                                <div class="fish-eyes"></div>
+                            </div>
+                            <div
+                                class="fish"
+                                style="left: 1350px; top: 100px;"
+                            >
+                                <div class="fish-eyes"></div>
+                            </div>
+                            <div
+                                class="fish"
+                                style="left: 1500px; top: 100px;"
+                            >
+                                <div class="fish-eyes"></div>
+                            </div>
+                            <div
+                                class="fish"
+                                style="left: 900px; top: 200px;"
+                            >
+                                <div class="fish-eyes"></div>
+                            </div>
+                            <div
+                                class="fish"
+                                style="left: 1050px; top: 200px;"
+                            >
+                                <div class="fish-eyes"></div>
+                            </div>
+                            <div
+                                class="fish"
+                                style="left: 1200px; top: 200px;"
+                            >
+                                <div class="fish-eyes"></div>
+                            </div>
+                            <div
+                                class="fish"
+                                style="left: 900px; top: 300px;"
+                            >
+                                <div class="fish-eyes"></div>
+                            </div>
+                            <div
+                                class="fish"
+                                style="left: 1050px; top: 300px;"
+                            >
+                                <div class="fish-eyes"></div>
+                            </div>
+                            <div
+                                class="fish"
+                                style="left: 1200px; top: 300px;"
+                            >
+                                <div class="fish-eyes"></div>
+                            </div>
+                            <div
+                                class="fish"
+                                style="left: 1350px; top: 300px;"
+                            >
+                                <div class="fish-eyes"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="skill-2-container">
+                        <div class="skill-measurement skill-measurement-1">
+                            <div class="skill-measurement-header">小白</div>
+                            <div class="skill-measurement-line"></div>
+                        </div>
+                        <div class="skill-measurement skill-measurement-2">
+                            <div class="skill-measurement-header">了解</div>
+                            <div class="skill-measurement-line"></div>
+                        </div>
+                        <div class="skill-measurement skill-measurement-3">
+                            <div class="skill-measurement-header">入门</div>
+                            <div class="skill-measurement-line"></div>
+                        </div>
+                        <div class="skill-measurement skill-measurement-4">
+                            <div class="skill-measurement-header">熟悉</div>
+                            <div class="skill-measurement-line"></div>
+                        </div>
+                        <div class="skill-measurement skill-measurement-5">
+                            <div class="skill-measurement-header">精通</div>
+                            <div class="skill-measurement-line"></div>
+                        </div>
+                        <div id="crab-text-container">
+                            <div
+                                class="sea-ribbon-container"
+                                id="crab-ribbon-container-1"
+                            >
+                                <div class="sea-ribbon-left"></div>
+                                <div class="sea-ribbon-middle">Ant Design</div>
+                                <div class="sea-ribbon-right"></div>
+                            </div>
+                            <div
+                                class="sea-ribbon-container"
+                                id="crab-ribbon-container-2"
+                            >
+                                <div class="sea-ribbon-left"></div>
+                                <div class="sea-ribbon-middle">Element</div>
+                                <div class="sea-ribbon-right"></div>
+                            </div>
+                            <div
+                                class="sea-ribbon-container"
+                                id="crab-ribbon-container-3"
+                            >
+                                <div class="sea-ribbon-left"></div>
+                                <div class="sea-ribbon-middle">PhotoShop</div>
+                                <div class="sea-ribbon-right"></div>
+                            </div>
+                            <div
+                                class="sea-ribbon-container"
+                                id="crab-ribbon-container-4"
+                            >
+                                <div class="sea-ribbon-left"></div>
+                                <div class="sea-ribbon-middle">Illustrator</div>
+                                <div class="sea-ribbon-right"></div>
+                            </div>
+                        </div>
+                        <div id="crabs-container">
+                            <div
+                                class="crab"
+                                style="left: 900px; top: 0px;"
+                            >
+                                <div class="crab-eyes"></div>
+                            </div>
+                            <div
+                                class="crab"
+                                style="left: 1050px; top: 0px;"
+                            >
+                                <div class="crab-eyes"></div>
+                            </div>
+                            <div
+                                class="crab"
+                                style="left: 1200px; top: 0px;"
+                            >
+                                <div class="crab-eyes"></div>
+                            </div>
+                            <div
+                                class="crab"
+                                style="left: 1350px; top: 0px;"
+                            >
+                                <div class="crab-eyes"></div>
+                            </div>
+                            <div
+                                class="crab"
+                                style="left: 1500px; top: 0px;"
+                            >
+                                <div class="crab-eyes"></div>
+                            </div>
+                            <div
+                                class="crab"
+                                style="left: 900px; top: 100px;"
+                            >
+                                <div class="crab-eyes"></div>
+                            </div>
+                            <div
+                                class="crab"
+                                style="left: 1050px; top: 100px;"
+                            >
+                                <div class="crab-eyes"></div>
+                            </div>
+                            <div
+                                class="crab"
+                                style="left: 1200px; top: 100px;"
+                            >
+                                <div class="crab-eyes"></div>
+                            </div>
+                            <div
+                                class="crab"
+                                style="left: 1350px; top: 100px;"
+                            >
+                                <div class="crab-eyes"></div>
+                            </div>
+                            <div
+                                class="crab"
+                                style="left: 1500px; top: 100px;"
+                            >
+                                <div class="crab-eyes"></div>
+                            </div>
+                            <div
+                                class="crab"
+                                style="left: 900px; top: 200px;"
+                            >
+                                <div class="crab-eyes"></div>
+                            </div>
+                            <div
+                                class="crab"
+                                style="left: 1050px; top: 200px;"
+                            >
+                                <div class="crab-eyes"></div>
+                            </div>
+                            <div
+                                class="crab"
+                                style="left: 1200px; top: 200px;"
+                            >
+                                <div class="crab-eyes"></div>
+                            </div>
+                            <div
+                                class="crab"
+                                style="left: 1350px; top: 200px;"
+                            >
+                                <div class="crab-eyes"></div>
+                            </div>
+                            <div
+                                class="crab"
+                                style="left: 900px; top: 300px;"
+                            >
+                                <div class="crab-eyes"></div>
+                            </div>
+                            <div
+                                class="crab"
+                                style="left: 1050px; top: 300px;"
+                            >
+                                <div class="crab-eyes"></div>
+                            </div>
+                            <div
+                                class="crab"
+                                style="left: 1200px; top: 300px;"
+                            >
+                                <div class="crab-eyes"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="skill-3-container">
+                        <div class="skill-measurement skill-measurement-1">
+                            <div class="skill-measurement-header">小白</div>
+                            <div class="skill-measurement-line"></div>
+                        </div>
+                        <div class="skill-measurement skill-measurement-2">
+                            <div class="skill-measurement-header">了解</div>
+                            <div class="skill-measurement-line"></div>
+                        </div>
+                        <div class="skill-measurement skill-measurement-3">
+                            <div class="skill-measurement-header">入门</div>
+                            <div class="skill-measurement-line"></div>
+                        </div>
+                        <div class="skill-measurement skill-measurement-4">
+                            <div class="skill-measurement-header">熟悉</div>
+                            <div class="skill-measurement-line"></div>
+                        </div>
+                        <div class="skill-measurement skill-measurement-5">
+                            <div class="skill-measurement-header">精通</div>
+                            <div class="skill-measurement-line"></div>
+                        </div>
+                        <div id="turtle-text-container">
+                            <div
+                                class="sea-ribbon-container"
+                                id="turtle-ribbon-container-1"
+                            >
+                                <div class="sea-ribbon-left"></div>
+                                <div class="sea-ribbon-middle">Premiere</div>
+                                <div class="sea-ribbon-right"></div>
+                            </div>
+                            <div
+                                class="sea-ribbon-container"
+                                id="turtle-ribbon-container-2"
+                            >
+                                <div class="sea-ribbon-left"></div>
+                                <div class="sea-ribbon-middle">After Effects</div>
+                                <div class="sea-ribbon-right"></div>
+                            </div>
+                            <div
+                                class="sea-ribbon-container"
+                                id="turtle-ribbon-container-3"
+                            >
+                                <div class="sea-ribbon-left"></div>
+                                <div class="sea-ribbon-middle">Maya</div>
+                                <div class="sea-ribbon-right"></div>
+                            </div>
+                            <div
+                                class="sea-ribbon-container"
+                                id="turtle-ribbon-container-4"
+                            >
+                                <div class="sea-ribbon-left"></div>
+                                <div class="sea-ribbon-middle">Zbrush</div>
+                                <div class="sea-ribbon-right"></div>
+                            </div>
+                        </div>
+                        <div id="turtles-container">
+                            <div
+                                class="turtle"
+                                style="left: 900px; top: 0px;"
+                            >
+                                <div class="turtle-eyes"></div>
+                            </div>
+                            <div
+                                class="turtle"
+                                style="left: 1050px; top: 0px;"
+                            >
+                                <div class="turtle-eyes"></div>
+                            </div>
+                            <div
+                                class="turtle"
+                                style="left: 1200px; top: 0px;"
+                            >
+                                <div class="turtle-eyes"></div>
+                            </div>
+                            <div
+                                class="turtle"
+                                style="left: 1350px; top: 0px;"
+                            >
+                                <div class="turtle-eyes"></div>
+                            </div>
+                            <div
+                                class="turtle"
+                                style="left: 900px; top: 100px;"
+                            >
+                                <div class="turtle-eyes"></div>
+                            </div>
+                            <div
+                                class="turtle"
+                                style="left: 1050px; top: 100px;"
+                            >
+                                <div class="turtle-eyes"></div>
+                            </div>
+                            <div
+                                class="turtle"
+                                style="left: 900px; top: 200px;"
+                            >
+                                <div class="turtle-eyes"></div>
+                            </div>
+                            <div
+                                class="turtle"
+                                style="left: 1050px; top: 200px;"
+                            >
+                                <div class="turtle-eyes"></div>
+                            </div>
+                            <div
+                                class="turtle"
+                                style="left: 1200px; top: 200px;"
+                            >
+                                <div class="turtle-eyes"></div>
+                            </div>
+                            <div
+                                class="turtle"
+                                style="left: 900px; top: 300px;"
+                            >
+                                <div class="turtle-eyes"></div>
+                            </div>
+                            <div
+                                class="turtle"
+                                style="left: 1050px; top: 300px;"
+                            >
+                                <div class="turtle-eyes"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="bubble-container">
+                        <div
+                            id="bubble"
+                            style="opacity: 0;"
+                        ></div>
+                    </div>
+                </div>
+                <div id="sea-floor"></div>
+                <div
+                    class="ribbon-absolute"
+                    id="ribbon-2-1"
+                >
+                    <div class="ribbon-left"></div>
+                    <div class="ribbon-middle">脚本和编程语言</div>
+                    <div class="ribbon-right"></div>
+                </div>
+                <div
+                    class="ribbon-absolute"
+                    id="ribbon-2-2"
+                >
+                    <div class="ribbon-left"></div>
+                    <div class="ribbon-middle">网页与平面软件</div>
+                    <div class="ribbon-right"></div>
+                </div>
+                <div
+                    class="ribbon-absolute"
+                    id="ribbon-2-3"
+                >
+                    <div class="ribbon-left"></div>
+                    <div class="ribbon-middle">视频与三维软件</div>
+                    <div class="ribbon-right"></div>
+                </div>
+                <div id="panel-and-floor-container">
+                    <div id="panel"></div>
+                    <div id="floor"></div>
+                </div>
+                <div id="title-experience"></div>
+                <div id="boxes"></div>
+                <div id="experience-1-container">
+                    <div
+                        class="chain-block-and-string-container"
+                        style="left: 255px; bottom: 1115.6px;"
+                    >
+                        <div class="chain-block-string"></div>
+                        <div class="chain-block"></div>
+                    </div>
+                    <div
+                        class="experience-text-container"
+                        id="experience-text-container-1"
+                        style="bottom: 749.6px;"
+                    >
+                        <div class="experience-text-a">2020年 7月 - 2020年 6月</div>
+                        <div class="experience-text-b">其卡通 前端开发</div>
+                        <div class="experience-text-d">设计并开发了多种在线项目，如后台管理系统、小程序、公司首页和培训网站。</div>
+                    </div>
+                    <div
+                        id="robot"
+                        style="left: 1000px;"
+                    >
+                        <div id="robot-body"></div>
+                        <div id="robot-hand-left">
+                            <div
+                                class="robot-hand-a"
+                                style="opacity: 1;"
+                            ></div>
+                            <div
+                                class="robot-hand-b"
+                                style="opacity: 0;"
+                            ></div>
+                            <div
+                                class="robot-hand-c"
+                                style="opacity: 0;"
+                            ></div>
+                            <div
+                                class="robot-hand-d"
+                                style="opacity: 0;"
+                            ></div>
+                        </div>
+                        <div id="robot-hand-right">
+                            <div
+                                class="robot-hand-a"
+                                style="opacity: 1;"
+                            ></div>
+                            <div
+                                class="robot-hand-b"
+                                style="opacity: 0;"
+                            ></div>
+                            <div
+                                class="robot-hand-c"
+                                style="opacity: 0;"
+                            ></div>
+                            <div
+                                class="robot-hand-d"
+                                style="opacity: 0;"
+                            ></div>
+                        </div>
+                        <div
+                            class="piechart"
+                            id="piechart-robot"
+                        >
+                            <div class="piechart-back"></div>
+                            <div
+                                id="piechart-robot-front"
+                                style="opacity: 0;"
+                            ></div>
+                            <div
+                                class="piechart-text-a"
+                                id="piechart-robot-text-graphic-1"
+                                style="opacity: 0;"
+                            >设计</div>
+                            <div
+                                class="piechart-text-b"
+                                id="piechart-robot-text-graphic-2"
+                                style="opacity: 0;"
+                            >15%</div>
+                            <div
+                                class="piechart-text-c"
+                                id="piechart-robot-text-animation-1"
+                                style="opacity: 0;"
+                            >编码</div>
+                            <div
+                                class="piechart-text-d"
+                                id="piechart-robot-text-animation-2"
+                                style="opacity: 0;"
+                            >70%</div>
+                            <div
+                                class="piechart-text-a"
+                                id="piechart-robot-text-code-1"
+                                style="opacity: 0;"
+                            >平面</div>
+                            <div
+                                class="piechart-text-b"
+                                id="piechart-robot-text-code-2"
+                                style="opacity: 0;"
+                            >15%</div>
+                        </div>
+                    </div>
+                    <div class="ribbon-container">
+                        <div class="ribbon-relative">
+                            <div class="ribbon-left"></div>
+                            <div class="ribbon-middle">工作经验</div>
+                            <div class="ribbon-right"></div>
+                        </div>
+                    </div>
+                </div>
+                <div
+                    class="elevation"
+                    id="elevation-3"
+                >
+                    <div class="elevation-box"></div>
+                    <div class="elevation-floor"></div>
+                </div>
+                <div id="experience-2-container">
+                    <div
+                        class="chain-block-and-string-container"
+                        style="left: 255px; bottom: 1040.6px;"
+                    >
+                        <div class="chain-block-string"></div>
+                        <div class="chain-block"></div>
+                    </div>
+                    <div
+                        class="experience-text-container"
+                        id="experience-text-container-2"
+                        style="bottom: 749.6px;"
+                    >
+                        <div class="experience-text-a">其卡通管理系统</div>
+                        <!-- <div class="experience-text-b">其卡通管理系统</div> -->
+                        <div class="experience-text-c">方便其卡通后台管理系统是为实现公司人力资源管理流程化、可视化、便捷化，决定开发的一套完善的内部管理系统。该管理系统包含组织管理、人事管理、培训管理、考勤管理、制片管理、通知公告、业务提醒、统计报表、系统管理等模块。各个功能模块均提供了一些标准性的开放式接口，可与其卡通其他项目进行数据交互，拓展。</div>
+                    </div>
+                    <div
+                        id="squid"
+                        style="left: 1000px;"
+                    >
+                        <div
+                            class="squid-hand-open"
+                            id="squid-hand-open-1"
+                            style="opacity: 1;"
+                        ></div>
+                        <div
+                            class="squid-hand-open"
+                            id="squid-hand-open-2"
+                            style="opacity: 1;"
+                        ></div>
+                        <div
+                            class="squid-hand-open"
+                            id="squid-hand-open-3"
+                            style="opacity: 1;"
+                        ></div>
+                        <div
+                            class="squid-hand-open"
+                            id="squid-hand-open-4"
+                            style="opacity: 1;"
+                        ></div>
+                        <div
+                            class="squid-hand-close"
+                            id="squid-hand-close-1"
+                            style="opacity: 0;"
+                        ></div>
+                        <div
+                            class="squid-hand-close"
+                            id="squid-hand-close-2"
+                            style="opacity: 0;"
+                        ></div>
+                        <div
+                            class="squid-hand-close"
+                            id="squid-hand-close-3"
+                            style="opacity: 0;"
+                        ></div>
+                        <div
+                            class="squid-hand-close"
+                            id="squid-hand-close-4"
+                            style="opacity: 0;"
+                        ></div>
+                        <div id="squid-body"></div>
+                        <div
+                            class="piechart"
+                            id="piechart-squid"
+                        >
+                            <div class="piechart-back"></div>
+                            <div
+                                id="piechart-squid-front"
+                                style="opacity: 0;"
+                            ></div>
+                            <div
+                                class="piechart-text-c"
+                                id="piechart-squid-text-graphic-1"
+                                style="opacity: 0;"
+                            >Vue2</div>
+                            <!-- <div
+                                class="piechart-text-d"
+                                id="piechart-squid-text-graphic-2"
+                                style="opacity: 0;"
+                            >70%</div> -->
+                            <div
+                                class="piechart-text-a"
+                                id="piechart-squid-text-animation-1"
+                                style="opacity: 0;"
+                            >ElementUi</div>
+                            <!-- <div
+                                class="piechart-text-b"
+                                id="piechart-squid-text-animation-2"
+                                style="opacity: 0;"
+                            >15%</div> -->
+                            <div
+                                class="piechart-text-a"
+                                id="piechart-squid-text-code-1"
+                                style="opacity: 0;"
+                            >ECharts</div>
+                            <!-- <div
+                                class="piechart-text-b"
+                                id="piechart-squid-text-code-2"
+                                style="opacity: 0;"
+                            >15%</div> -->
+                        </div>
+                    </div>
+                    <div class="ribbon-container">
+                        <div class="ribbon-relative">
+                            <div class="ribbon-left"></div>
+                            <div class="ribbon-middle">项目经历</div>
+                            <div class="ribbon-right"></div>
+                        </div>
+                    </div>
+                </div>
+                <div
+                    class="elevation"
+                    id="elevation-4"
+                >
+                    <div class="elevation-box"></div>
+                    <div class="elevation-floor"></div>
+                </div>
+                <div id="experience-3-container">
+                    <div
+                        class="chain-block-and-string-container"
+                        style="left: 255px; bottom: 1040.6px;"
+                    >
+                        <div class="chain-block-string"></div>
+                        <div class="chain-block"></div>
+                    </div>
+                    <div
+                        class="experience-text-container"
+                        id="experience-text-container-3"
+                        style="bottom: 749.6px;"
+                    >
+                        <div class="experience-text-a">祥阅阅读小程序</div>
+                        <!-- <div class="experience-text-b">上龙泽 视频编辑</div> -->
+                        <div class="experience-text-e">此项目是为“其卡通人才培养计划“打造的内部培训系统，其中含有公共信息、学习园地、在线测试、管理中心四大功能模块。主要用于员工培训并将学习情况作为员工的信息的一部分加到员工培训档案中。</div>
+                    </div>
+                    <div
+                        id="alien"
+                        style="left: 900px;"
+                    >
+                        <div id="alien-body"></div>
+                        <div id="alien-steer"></div>
+                        <div id="alien-ship"></div>
+                        <div
+                            class="piechart"
+                            id="piechart-alien"
+                        >
+                            <div class="piechart-back"></div>
+                            <div
+                                id="piechart-alien-front"
+                                style="opacity: 0;"
+                            ></div>
+                            <div
+                                class="piechart-text-c"
+                                id="piechart-alien-text-graphic-1"
+                                style="opacity: 0;"
+                            >uniapp</div>
+                            <!-- <div
+                                class="piechart-text-d"
+                                id="piechart-alien-text-graphic-2"
+                                style="opacity: 0;"
+                            >70%</div> -->
+                            <div
+                                class="piechart-text-a"
+                                id="piechart-alien-text-animation-1"
+                                style="opacity: 0;"
+                            >axios</div>
+                            <!-- <div
+                                class="piechart-text-b"
+                                id="piechart-alien-text-animation-2"
+                                style="opacity: 0;"
+                            >15%</div> -->
+                            <div
+                                class="piechart-text-a"
+                                id="piechart-alien-text-code-1"
+                                style="opacity: 0;"
+                            >vantUi</div>
+                            <!-- <div
+                                class="piechart-text-b"
+                                id="piechart-alien-text-code-2"
+                                style="opacity: 0;"
+                            >15%</div> -->
+                        </div>
+                    </div>
+                    <div class="ribbon-container">
+                        <div class="ribbon-relative">
+                            <div class="ribbon-left"></div>
+                            <div class="ribbon-middle">项目经验</div>
+                            <div class="ribbon-right"></div>
+                        </div>
+                    </div>
+                </div>
+                <div
+                    class="gate"
+                    id="gate-3"
+                >
+                    <div
+                        class="gate-text"
+                        id="gate-text-3"
+                    >LEVEL 3</div>
+                </div>
+                <div id="title-awards-and"></div>
+                <div id="title-publication"></div>
+                <div
+                    class="gate"
+                    id="gate-4"
+                >
+                    <div
+                        class="gate-text"
+                        id="gate-text-4"
+                    >LEVEL 4</div>
+                </div>
+                <div id="dock-column"></div>
+                <div
+                    class="sea-wave"
+                    id="sea-wave-2"
+                ></div>
+                <div
+                    class="sea"
+                    id="sea-2"
+                ></div>
+                <div id="dock-floor"></div>
+            </div>
+            <div
+                class="layer-vertical"
+                id="layer-vertical-3"
+                style="height: 7134px; left: 20541px; bottom: 0px;"
+            >
+                <div
+                    id="banners-container"
+                    style="bottom: 937px;"
+                >
+                    <div class="banner">
+                        <div class="banner-top-b"></div>
+                        <div class="banner-middle-b">
+                            <div class="banner-text-a">项目管理工具</div>
+                            <div class="banner-line"></div>
+                            <div class="banner-text-b">Zen&Tao</div>
+                            <div class="banner-line"></div>
+                            <!-- <div class="banner-text-c">Nominee</div>
+                            <div class="banner-button"><a
+                                    href="http://www.webbyawards.com/winners/2014/web/general-website/self-promotionportfolio/robby-leonardis-interactive-resume/"
+                                    target="_blank"
+                                ><img src="./resume/kevin_files/banner-button.png"></a></div> -->
+                        </div>
+                        <div class="banner-bottom-b"></div>
+                    </div>
+                    <div class="banner">
+                        <div class="banner-top-a"></div>
+                        <div class="banner-middle-a">
+                            <div class="banner-text-a">版本控制工具</div>
+                            <div class="banner-line"></div>
+                            <div class="banner-text-b">Gitee GitHub</div>
+                            <div class="banner-line"></div>
+                            <!-- <div class="banner-text-c">Interview</div>
+                            <div class="banner-button"><a
+                                    href="http://www.creativebloq.com/netmag/robby-leonardi-his-zigzagging-path-success-31410874"
+                                    target="_blank"
+                                ><img src="./resume/kevin_files/banner-button.png"></a></div> -->
+                        </div>
+                        <div class="banner-bottom-a"></div>
+                    </div>
+                    <div class="banner">
+                        <div class="banner-top-b"></div>
+                        <div class="banner-middle-b">
+                            <div class="banner-text-a">软件包管理工具</div>
+                            <div class="banner-line"></div>
+                            <div class="banner-text-b">NPM Yarn</div>
+                            <div class="banner-line"></div>
+                            <!-- <div class="banner-text-c">Interview</div>
+                            <div class="banner-button"><a
+                                    href="http://www.thefwa.com/article/the-making-of-robby-leonardi-s-interactive-resume"
+                                    target="_blank"
+                                ><img src="./resume/kevin_files/banner-button.png"></a></div> -->
+                        </div>
+                        <div class="banner-bottom-b"></div>
+                    </div>
+                    <div class="banner">
+                        <div class="banner-top-a"></div>
+                        <div class="banner-middle-a">
+                            <div class="banner-text-a">数据库</div>
+                            <div class="banner-line"></div>
+                            <div class="banner-text-b">MongoDB</div>
+                            <div class="banner-line"></div>
+                            <!-- <div class="banner-text-c">Site of the Day</div>
+                            <div class="banner-button"><a
+                                    href="http://www.thefwa.com/site/robby-leonardi"
+                                    target="_blank"
+                                ><img src="./resume/kevin_files/banner-button.png"></a></div> -->
+                        </div>
+                        <div class="banner-bottom-a"></div>
+                    </div>
+                    <div class="banner">
+                        <div class="banner-top-b"></div>
+                        <div class="banner-middle-b">
+                            <div class="banner-text-a">应用程序框架</div>
+                            <div class="banner-line"></div>
+                            <div class="banner-text-b">Express</div>
+                            <div class="banner-line"></div>
+                            <!-- <div class="banner-text-c">Site of the Day</div>
+                            <div class="banner-button"><a
+                                    href="http://www.awwwards.com/web-design-awards/robby-leonardi"
+                                    target="_blank"
+                                ><img src="./resume/kevin_files/banner-button.png"></a></div> -->
+                        </div>
+                        <div class="banner-bottom-b"></div>
+                    </div>
+                    <div class="banner">
+                        <div class="banner-top-a"></div>
+                        <div class="banner-middle-a">
+                            <div class="banner-text-a">数据可视化图表库</div>
+                            <div class="banner-line"></div>
+                            <div class="banner-text-b">ECharts</div>
+                            <div class="banner-line"></div>
+                            <!-- <div class="banner-text-c">News Article</div>
+                            <div class="banner-button"><a
+                                    href="http://www.businessinsider.com/web-designer-levels-up-his-resume-as-an-interactive-video-game-2013-11"
+                                    target="_blank"
+                                ><img src="./resume/kevin_files/banner-button.png"></a></div> -->
+                        </div>
+                        <div class="banner-bottom-a"></div>
+                    </div>
+                    <div class="banner">
+                        <div class="banner-top-b"></div>
+                        <div class="banner-middle-b">
+                            <div class="banner-text-a">组件库</div>
+                            <div class="banner-line"></div>
+                            <div class="banner-text-b">ElementUI Ant Design</div>
+                            <div class="banner-line"></div>
+                            <!-- <div class="banner-text-c">News Article</div>
+                            <div class="banner-button"><a
+                                    href="http://news.cnet.com/8301-17938_105-57609630-1/side-scrolling-mario-inspired-resume-rocks-the-job-hunt/"
+                                    target="_blank"
+                                ><img src="./resume/kevin_files/banner-button.png"></a></div> -->
+                        </div>
+                        <div class="banner-bottom-b"></div>
+                    </div>
+                    <div class="banner">
+                        <div class="banner-top-a"></div>
+                        <div class="banner-middle-a">
+                            <div class="banner-text-a">前端开发框架</div>
+                            <div class="banner-line"></div>
+                            <div class="banner-text-b">Vue.js &nbsp;&nbsp;&nbsp;&nbsp;
+                                uni-app</div>
+                            <div class="banner-line"></div>
+                            <!-- <div class="banner-text-c">News Article</div>
+                            <div class="banner-button"><a
+                                    href="http://mashable.com/2013/10/25/super-mario-bros-resume/"
+                                    target="_blank"
+                                ><img src="./resume/kevin_files/banner-button.png"></a></div> -->
+                        </div>
+                        <div class="banner-bottom-a"></div>
+                    </div>
+                    <div class="banner">
+                        <div class="banner-top-b"></div>
+                        <div class="banner-middle-b">
+                            <div class="banner-text-a">Web数据交互方式</div>
+                            <div class="banner-line"></div>
+                            <div class="banner-text-b">Axios Fetch</div>
+                            <div class="banner-line"></div>
+                            <!-- <div class="banner-text-c">News Article</div>
+                            <div class="banner-button"><a
+                                    href="http://www.fastcompany.com/3020669/fast-feed/resume-writers-scroll-through-this-super-mario-esque-platform-game-and-weep"
+                                    target="_blank"
+                                ><img src="./resume/kevin_files/banner-button.png"></a></div> -->
+                        </div>
+                        <div class="banner-bottom-b"></div>
+                    </div>
+                    <div class="banner">
+                        <div class="banner-top-a"></div>
+                        <div class="banner-middle-a">
+                            <div class="banner-text-a">JavaScript语言标准</div>
+                            <div class="banner-line"></div>
+                            <div class="banner-text-b">ECMAScript6</div>
+                            <div class="banner-line"></div>
+                            <!-- <div class="banner-text-c">News Article</div>
+                            <div class="banner-button"><a
+                                    href="http://www.buzzfeed.com/abecookie/the-most-interactive-resume-ever-fkff"
+                                    target="_blank"
+                                ><img src="./resume/kevin_files/banner-button.png"></a></div> -->
+                        </div>
+                        <div class="banner-bottom-a"></div>
+                    </div>
+                    <div class="banner">
+                        <div class="banner-top-b"></div>
+                        <div class="banner-middle-b">
+                            <div class="banner-text-a">层叠样式表规范</div>
+                            <div class="banner-line"></div>
+                            <div class="banner-text-b">CSS3</div>
+                            <div class="banner-line"></div>
+                            <!-- <div class="banner-text-c">Winner of the Day</div> -->
+                            <!-- <div class="banner-button"><a
+                                    href="http://www.cssdesignawards.com/sites/robby-leonardi/23615/"
+                                    target="_blank"
+                                ><img src="./resume/kevin_files/banner-button.png"></a></div> -->
+                        </div>
+                        <div class="banner-bottom-b"></div>
+                    </div>
+                    <div class="banner">
+                        <div class="banner-top-a"></div>
+                        <div class="banner-middle-a">
+                            <div class="banner-text-a">WEB语言的规范</div>
+                            <div class="banner-line"></div>
+                            <div class="banner-text-b">HTML5</div>
+                            <div class="banner-line"></div>
+                            <!-- <div class="banner-text-c">其卡通</div> -->
+                            <!-- <div class="banner-button"><a
+                                    href="http://http://www.itscartoon.com/"
+                                    target="_blank"
+                                ><img src="./resume/kevin_files/banner-button.png"></a></div> -->
+                        </div>
+                        <div class="banner-bottom-a"></div>
+                    </div>
+                </div>
+            </div>
+            <div
+                id="fireworks-container"
+                style="top: -6197px; left: 20541px;"
+            >
+                <div
+                    class="firework-container"
+                    id="firework-container-1"
+                >
+                    <div
+                        class="firework"
+                        style="opacity: 1;"
+                    ><svg
+                            version="1.2"
+                            baseProfile="tiny"
+                            width="100%"
+                            height="100%"
+                        ></svg></div>
+                </div>
+                <div
+                    class="firework-container"
+                    id="firework-container-2"
+                >
+                    <div
+                        class="firework"
+                        style="opacity: 1;"
+                    ><svg
+                            version="1.2"
+                            baseProfile="tiny"
+                            width="100%"
+                            height="100%"
+                        ></svg></div>
+                </div>
+                <div
+                    class="firework-container"
+                    id="firework-container-3"
+                >
+                    <div
+                        class="firework"
+                        style="opacity: 1;"
+                    ><svg
+                            version="1.2"
+                            baseProfile="tiny"
+                            width="100%"
+                            height="100%"
+                        ></svg></div>
+                </div>
+                <div
+                    class="firework-container"
+                    id="firework-container-4"
+                >
+                    <div
+                        class="firework"
+                        style="opacity: 1;"
+                    ><svg
+                            version="1.2"
+                            baseProfile="tiny"
+                            width="100%"
+                            height="100%"
+                        ></svg></div>
+                </div>
+                <div
+                    class="firework-container"
+                    id="firework-container-5"
+                >
+                    <div
+                        class="firework"
+                        style="opacity: 1;"
+                    ><svg
+                            version="1.2"
+                            baseProfile="tiny"
+                            width="100%"
+                            height="100%"
+                        ></svg></div>
+                </div>
+                <div
+                    class="firework-container"
+                    id="firework-container-6"
+                >
+                    <div
+                        class="firework"
+                        style="opacity: 1;"
+                    ><svg
+                            version="1.2"
+                            baseProfile="tiny"
+                            width="100%"
+                            height="100%"
+                        ></svg></div>
+                </div>
+            </div>
+            <div
+                id="robby-container"
+                style="left: 50%; bottom: 20%;"
+            >
+                <div id="robby">
+                    <div
+                        id="robby-slides"
+                        style="left: 0px; top: 0px;"
+                    ></div>
+                    <div
+                        id="robby-eyes-close"
+                        style="opacity: 0; left: 90px;"
+                    ></div>
+                </div>
+            </div>
+            <div
+                id="balloon"
+                style="left: 20950.5px; bottom: 187.4px;"
+            ></div>
+            <div
+                id="contact-container"
+                style="top: -6197px; left: 20541px;"
+            >
+                <div id="contact-center">
+                    <div id="title-contact"></div>
+                    <div id="contact-box">
+                        <div id="contact-box-email"><input
+                                id="email-address"
+                                name="email-address"
+                                maxlength="75"
+                                control-id="ControlID-1"
+                            ></div>
+                        <div id="contact-box-subject"><input
+                                id="email-subject"
+                                name="email-subject"
+                                maxlength="150"
+                                control-id="ControlID-2"
+                            ></div>
+                        <div id="contact-box-message"><textarea
+                                id="email-message"
+                                name="email-message"
+                                control-id="ControlID-3"
+                            ></textarea></div>
+                    </div>
+                    <div id="contact-button"><input
+                            id="send-email"
+                            name="send-email"
+                            src="./resume/kevin_files/contact-button.png"
+                            type="image"
+                            value="submit"
+                            control-id="ControlID-4"
+                        ></div>
+                </div>
+                <div
+                    id="social-container"
+                    style="top: 0%;"
+                >
+                
+                </div>
+                <div
+                    class="contact-confirmation-container"
+                    style="left: 868px; top: 379.6px;"
+                >
+                    <div class="contact-confirmation">
+                        <div
+                            class="contact-confirmation-rectangle"
+                            style="opacity: 0;"
+                        ></div>
+                        <div
+                            class="contact-confirmation-triangle"
+                            style="opacity: 0;"
+                        ></div>
+                        <div
+                            class="contact-confirmation-title-b"
+                            style="opacity: 0;"
+                        >ERROR</div>
+                        <div
+                            class="contact-confirmation-text-b"
+                            style="opacity: 0;"
+                        >请输入有效的电子邮件地址!</div>
+                    </div>
+                </div>
+                <div
+                    class="contact-confirmation-container"
+                    style="left: 868px; top: 379.6px;"
+                >
+                    <div class="contact-confirmation">
+                        <div
+                            class="contact-confirmation-rectangle"
+                            style="opacity: 0;"
+                        ></div>
+                        <div
+                            class="contact-confirmation-triangle"
+                            style="opacity: 0;"
+                        ></div>
+                        <div
+                            class="contact-confirmation-title-b"
+                            style="opacity: 0;"
+                        >ERROR</div>
+                        <div
+                            class="contact-confirmation-text-b"
+                            style="opacity: 0;"
+                        >请填写所有信息</div>
+                    </div>
+                </div>
+                <div
+                    class="contact-confirmation-container"
+                    style="left: 868px; top: 379.6px;"
+                >
+                    <div class="contact-confirmation">
+                        <div
+                            class="contact-confirmation-rectangle"
+                            style="opacity: 0;"
+                        ></div>
+                        <div
+                            class="contact-confirmation-triangle"
+                            style="opacity: 0;"
+                        ></div>
+                        <div
+                            class="contact-confirmation-text-d"
+                            style="opacity: 0;"
+                        >发送中……</div>
+                    </div>
+                </div>
+                <div
+                    class="contact-confirmation-container"
+                    style="left: 868px; top: 379.6px;"
+                >
+                    <div class="contact-confirmation">
+                        <div
+                            class="contact-confirmation-rectangle"
+                            style="opacity: 0;"
+                        ></div>
+                        <div
+                            class="contact-confirmation-triangle"
+                            style="opacity: 0;"
+                        ></div>
+                        <div
+                            class="contact-confirmation-title-b"
+                            style="opacity: 0;"
+                        >ERROR</div>
+                        <div
+                            class="contact-confirmation-text-c"
+                            style="opacity: 0;"
+                        >有点不对劲。请再试一次！</div>
+                    </div>
+                </div>
+                <div
+                    class="contact-confirmation-container"
+                    style="left: 868px; top: 379.6px;"
+                >
+                    <div class="contact-confirmation">
+                        <div
+                            class="contact-confirmation-rectangle"
+                            style="opacity: 0;"
+                        ></div>
+                        <div
+                            class="contact-confirmation-triangle"
+                            style="opacity: 0;"
+                        ></div>
+                        <div
+                            class="contact-confirmation-title-a"
+                            style="opacity: 0;"
+                        >THANK YOU</div>
+                        <div
+                            class="contact-confirmation-text-a"
+                            style="opacity: 0;"
+                        >您的邮件已发送。我会尽快给你回复！</div>
+                    </div>
+                </div>
+                <div id="contact-cloud-top"></div>
+                <div id="contact-cloud-bottom"></div>
+                <div id="contact-cloud-middle">
+                    <div id="contact-cloud-seal-top"></div>
+                    <div id="contact-cloud-seal-bottom"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="./resume/kevin_files/email.js"></script>
+    <script src="./resume/kevin_files/main.js"></script>
 </body>
 
 </html>
