@@ -1469,4 +1469,115 @@ $("#leftButton").click(function () {
         scrollTop: $(window).scrollTop() + 1000
     }, 1000)
 })
-// 监听#leftButton点击事件
+  // 禁止双击放大
+  (function() {
+    var lastTouchEnd = 0;
+    document.addEventListener('touchend', function(event) {
+      var now = (new Date()).getTime();
+      if (now - lastTouchEnd <= 300) {
+        event.preventDefault();
+      }
+      lastTouchEnd = now;
+    }, false);
+  })();
+
+  // 阻止双指放大
+  document.addEventListener('touchstart', function(event) {
+    if (event.touches.length > 1) {
+      event.preventDefault();
+    }
+  }, { passive: false });
+
+  // 阻止手动放大
+  document.addEventListener('gesturestart', function(event) {
+    event.preventDefault();
+  });
+  
+// 禁止右键菜单
+document.addEventListener("contextmenu", function (e) {
+    e.preventDefault();
+});
+// 平滑滚动函数
+function smoothScroll(targetY, duration) {
+    const startY = window.pageYOffset;
+    const difference = targetY - startY;
+    const startTime = performance.now();
+
+    function step() {
+        const progress = (performance.now() - startTime) / duration;
+        if (progress < 1) {
+            window.scrollTo(0, startY + difference * easeInOutCubic(progress));
+            requestAnimationFrame(step);
+        } else {
+            window.scrollTo(0, targetY);
+        }
+    }
+
+    requestAnimationFrame(step);
+}
+
+// 缓动函数，使动画更平滑
+function easeInOutCubic(t) {
+    return t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1;
+}
+
+// 节流函数，限制滚动事件的触发频率
+function throttle(func, limit) {
+    let inThrottle;
+    return function () {
+        const args = arguments;
+        const context = this;
+        if (!inThrottle) {
+            func.apply(context, args);
+            inThrottle = true;
+            setTimeout(() => (inThrottle = false), limit);
+        }
+    };
+}
+
+// 更新按钮点击处理程序
+$("#leftButton").click(function () {
+    const targetY = Math.max(0, window.pageYOffset - 1000);
+    smoothScroll(targetY, 500);
+});
+
+$("#rightButton").click(function () {
+    const targetY = window.pageYOffset + 1000;
+    smoothScroll(targetY, 500);
+});
+
+// 优化的触摸事件，实现更平滑的滚动
+let touchStartY = 0;
+let touchEndY = 0;
+
+document.addEventListener(
+    "touchstart",
+    function (e) {
+        touchStartY = e.touches[0].clientY;
+    },
+    false
+);
+
+document.addEventListener(
+    "touchend",
+    throttle(function (e) {
+        touchEndY = e.changedTouches[0].clientY;
+        const difference = touchStartY - touchEndY;
+        if (Math.abs(difference) > 50) {
+            // 最小滑动距离
+            const targetY =
+                window.pageYOffset + (difference > 0 ? 1000 : -1000);
+            smoothScroll(targetY, 500);
+        }
+    }, 200),
+    false
+);
+
+// 禁用默认的触摸移动行为以防止冲突
+document.addEventListener(
+    "touchmove",
+    function (e) {
+        e.preventDefault();
+    },
+    { passive: false }
+);
