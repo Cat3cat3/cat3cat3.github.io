@@ -24,6 +24,12 @@ function resetVariables() {
         0 == isTurtleStillAnimating && (canAnimateTurtleInformation = !0),
         canDrawManyFireworks = canAnimateSocialContainer = canAnimateNbaInformation = canAnimateAlienInformation = canAnimateSquidInformation = canAnimateRobotInformation = !0
 }
+/**
+ * 重置游戏中的所有元素和动画的函数
+ * 这个函数执行了一系列重置操作，包括重新定位植物、建筑物，以及各种海洋动物
+ * 如果特定的动画（如鱼、螃蟹、海龟）没有正在播放，它会重置并重新定位这些动画
+ * 还会重新定位 NBA 元素、各种经验元素、社交容器、经验文本容器、链块和字符串容器，并重置烟花 SVG
+ */
 function resetFunctions() {
     positionPlants(),
         positionBuildings(),
@@ -519,7 +525,7 @@ function nbaPlayerFall() {
         nbaBoardsJump(),
         animateNbaBoardsContinuously(),
         $(nbaPlayerContainerDiv).stop().animate({
-            left: "450px",
+            left: "560px",
             bottom: [0, "easeInCubic"]
         },
             300,
@@ -818,7 +824,7 @@ function rotateAlienHands() {
 }
 function animateAlien() {
     $(alienDiv).stop().animate({
-        left: "450px"
+        left: "560px"
     },
         1e3,
         function () {

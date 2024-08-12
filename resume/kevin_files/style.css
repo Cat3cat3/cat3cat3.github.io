@@ -49,7 +49,7 @@ a {
     height: 252px;
 }
 #alien {
-    left: 540px;
+    left: 640px;
     bottom: 30px;
     width: 400px;
     height: 636px;
@@ -800,9 +800,17 @@ body {
     font-size: 35px;
     line-height: 35px;
 }
+.experience-text-b2 {
+    position: relative;
+    width: 100%;
+    font-family: frankfurter-medium-plain;
+    color: #fff;
+    font-size: 22px;
+    margin-top: 10px;
+}
 .experience-text-b {
     font-family: frankfurter-plain;
-    font-size: 60px;
+    font-size: 35;
     line-height: 54px;
 }
 .experience-text-c {
@@ -816,6 +824,12 @@ body {
     font-family: Arial;
     color: #fff;
     font-size: 18px;
+}
+.experience-text-e2 {
+    position: relative;
+    font-family: Arial;
+    color: #fff;
+    font-size: 14px;
 }
 .experience-text-d {
     width: 75%;
@@ -1344,15 +1358,15 @@ img {
 }
 #piechart-robot-text-animation-1 {
     left: 10px;
-    top: 97px;
+    top: 126px;
 }
 #piechart-robot-text-animation-2 {
     left: 46px;
     top: 148px;
 }
 #piechart-robot-text-code-1 {
-    left: 220px;
-    top: 67px;
+    left: 202px;
+    top: 92px;
 }
 #piechart-robot-text-code-2 {
     left: 221px;
@@ -1377,15 +1391,15 @@ img {
     background-image: url(../image/piechart-front.png);
 }
 #piechart-alien-text-graphic-1 {
-    left: 4px;
-    top: 98px;
+    left: 8px;
+    top: 123px;
 }
 #piechart-alien-text-graphic-2 {
     left: 42px;
     top: 150px;
 }
 #piechart-alien-text-animation-1 {
-    left: 207px;
+    left: 188px;
     top: 162px;
 }
 #piechart-alien-text-animation-2 {
@@ -1393,7 +1407,7 @@ img {
     top: 193px;
 }
 #piechart-alien-text-code-1 {
-    left: 199px;
+    left: 191px;
     top: 99px;
 }
 #piechart-alien-text-code-2 {
@@ -1413,8 +1427,8 @@ img {
     background-image: url(../image/piechart-front.png);
 }
 #piechart-squid-text-graphic-1 {
-    left: 25px;
-    top: 98px;
+    left: 3px;
+    top: 125px;
 }
 #piechart-squid-text-graphic-2 {
     left: 42px;
@@ -1452,7 +1466,7 @@ img {
     position: absolute;
     font-family: poster-sans-bold;
     color: #fff;
-    font-size: 46px;
+    font-size: 35px;
 }
 .piechart-text-d {
     font-family: frankfurter-medium-plain;
